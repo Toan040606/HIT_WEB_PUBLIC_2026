@@ -9,10 +9,6 @@
       <link rel="stylesheet"
             href="file:///c:\Users\datch\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.18\crossnote\dependencies\katex\katex.min.css">
 
-
-
-
-
       <style>
             code[class*=language-],
             pre[class*=language-] {
@@ -843,30 +839,104 @@
                   display: none
             }
 
+            body {
+                  transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            body.dark-mode {
+                  background-color: #000;
+                  color: #f9fafb;
+            }
+
+            body.dark-mode .crossnote {
+                  color: #f9fafb;
+            }
+
+            body.dark-mode .crossnote h1,
+            body.dark-mode .crossnote h2,
+            body.dark-mode .crossnote h3,
+            body.dark-mode .crossnote h4,
+            body.dark-mode .crossnote h5,
+            body.dark-mode .crossnote h6,
+            body.dark-mode .crossnote strong {
+                  color: #f9fafb;
+            }
+
+            body.dark-mode .crossnote a {
+                  color: #7dd3fc;
+            }
+
+            body.dark-mode .crossnote blockquote {
+                  background-color: #1f2937;
+                  color: #d1d5db;
+                  border-left-color: #60a5fa;
+            }
+
+            body.dark-mode pre,
+            body.dark-mode code {
+                  background-color: #1f2937;
+                  color: #f9fafb;
+            }
+
+            .theme-toggle {
+                  position: fixed;
+                  top: 16px;
+                  right: 16px;
+                  z-index: 9999;
+                  border: none;
+                  border-radius: 999px;
+                  padding: 8px 14px;
+                  background: #2563eb;
+                  color: white;
+                  cursor: pointer;
+                  font-size: 14px;
+                  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .theme-toggle:hover {
+                  background: #1d4ed8;
+            }
+
             /* Please visit the URL below for more information: */
             /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
       </style>
       <!-- The content below will be included at the end of the <head> element. -->
       <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
-                  // your code here
+                  const toggleButton = document.querySelector(".theme-toggle");
+                  const savedTheme = localStorage.getItem("theme");
+
+                  if (savedTheme === "dark") {
+                        document.body.classList.add("dark-mode");
+                        toggleButton.textContent = "☀️";
+                  } else {
+                        toggleButton.textContent = "🌙";
+                  }
+
+                  toggleButton.addEventListener("click", function () {
+                        document.body.classList.toggle("dark-mode");
+                        const isDark = document.body.classList.contains("dark-mode");
+                        localStorage.setItem("theme", isDark ? "dark" : "light");
+                        toggleButton.textContent = isDark ? "☀️" : "🌙";
+                  });
             });
       </script>
 </head>
 
 <body for="html-export">
 
+      <button class="theme-toggle" type="button">🌙</button>
 
       <div class="crossnote markdown-preview  ">
 
             <h1 id="lộ-trình-lớp-web-public-hè-2025">Lộ trình lớp web public hè 2025 </h1>
             <hr>
-            <h4 id="buổi-1--giới-thiệu-cài-đặt-ide-và-extensions">Buổi 1 : Giới thiệu cài đặt IDE và Extensions </h4>
+            <h4 id="buổi-1-giới-thiệu-cài-đặt-ide-và-extensions">Buổi 1 : Giới thiệu cài đặt IDE và Extensions </h4>
             <h4 id="buổi-2-cấu-trúc-html-cơ-bản--semantic-html">Buổi 2: Cấu trúc HTML cơ bản &amp; Semantic HTML </h4>
             <h4 id="buổi-3-giới-thiệu-css--cách-style-cơ-bản">Buổi 3: Giới thiệu CSS &amp; Cách style cơ bản </h4>
             <h4 id="buổi-4-làm-việc-với-font-biến-bộ-chọn--quy-tắc-đặt-tên-trong-css">Buổi 4: Làm việc với Font, Biến,
                   Bộ chọn &amp; Quy tắc đặt tên trong CSS </h4>
-            <h4 id="buổi-5kỹ-thuật-chia-layout-với-flexbox">Buổi 5:Kỹ thuật chia layout với Flexbox </h4>
+            <h4 id="buổi-5-kỹ-thuật-chia-layout-với-flexbox">Buổi 5:Kỹ thuật chia layout với Flexbox </h4>
             <h4 id="buổi-6-position-animation-transition">Buổi 6: Position, Animation, Transition </h4>
             <h4 id="buổi-7-css-grid--thiết-kế-giao-diện-responsive">Buổi 7: CSS Grid &amp; Thiết kế giao diện Responsive
             </h4>
