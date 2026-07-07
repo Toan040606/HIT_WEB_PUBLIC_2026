@@ -162,22 +162,43 @@ B3: Copy đoạn code sau vào file vừa tạo.
 </html>
 ```
 
-B4: Quay trở lại gitHub sau đó nhấn vào mục `Setting`
+B4: Mở lại Git Bash và gõ lệnh `git add .` và Enter
+
+![alt text](git-add.png)
+
+B5: Tiếp theo gõ lệnh `git commit -m "message"` và Enter
+
+![alt text](git-commit.png)
+
+B6: Cuối cùng gõ lệnh `git push origin main` và Enter
+
+![alt text](git-push.png)
+
+Như vậy là đã thành công, load lại trang GitHub sẽ thấy file index.html đã được tải lên
+
+![alt text](github-result.png)
+
+B7: Tiếp tục ở trang GitHub, nhấn vào mục `Setting`
 
 ![alt text](st.png) 
 
-B5: Chọn vào phần Page 
+B8: Chọn vào phần Page 
 
 ![alt text](page.png)
 
-B6: Ở phần `Branch` chọn `main` như ảnh:
+B9: Ở phần `Branch` chọn `main` như ảnh:
 
 ![alt text](pg.png)
 
-B7: Nhấn vào button `Save` bên cạnh
-B8: Đợi 1 lúc sau đó nhần vào `Visit site`
+B10: Nhấn vào button `Save` bên cạnh
+
+B11: Đợi 1 lúc sau đó nhần vào `Visit site`
 
 ![alt text](visit.png)
+
+B12: Thêm `index.html` (tên file vừa tạo ở bước 2)
+
+![alt text](add.png)
 
 #### III. HTML, CSS
 ---
