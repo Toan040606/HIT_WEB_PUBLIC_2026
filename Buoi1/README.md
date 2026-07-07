@@ -179,10 +179,6 @@ B8: Đợi 1 lúc sau đó nhần vào `Visit site`
 
 ![alt text](visit.png)
 
-B9: Thêm `index.html` (tên file vừa tạo ở bước 2)
-
-![alt text](add.png)
-
 #### III. HTML, CSS
 ---
 1. HTML
