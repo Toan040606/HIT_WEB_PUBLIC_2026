@@ -1,4 +1,4 @@
-# Lộ trình lớp web public hè 2025
+# Lộ trình lớp web public hè 2026
 ***
 #### Buổi 1: Làm quen & Chuẩn bị môi trường
 #### Buổi 2: Cấu trúc & Thẻ HTML cơ bản
