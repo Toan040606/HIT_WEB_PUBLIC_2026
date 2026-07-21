@@ -100,8 +100,6 @@ p {
 }
 ```
 
-![alt text](./image/externalcss2.png)
-
 ![alt text](./image/externalcss.png)
 
 ### 4. So sánh mức độ sử dụng của 3 cách style css
