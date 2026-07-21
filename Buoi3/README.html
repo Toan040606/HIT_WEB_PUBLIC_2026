@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tài liệu Buổi 3 lớp HIT Web Public 2026: CSS cơ bản, Box Model, Display và Reset CSS.">
+  <title>HIT Web Public 2026 — Buổi 3: CSS cơ bản</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f7fb;
+      --surface: rgba(255, 255, 255, .88);
+      --surface-solid: #ffffff;
+      --surface-soft: #fff1e8;
+      --text: #172033;
+      --muted: #687188;
+      --line: #dfe5f0;
+      --primary: #f36b21;
+      --primary-strong: #c64b0b;
+      --cyan: #f59e62;
+      --pink: #b54708;
+      --success: #10b981;
+      --shadow: none;
+      --code-bg: #f6f8fa;
+      --code-line: #d0d7de;
+      --code-text: #24292f;
+      --code-comment: #6e7781;
+      --code-blue: #0550ae;
+      --code-purple: #8250df;
+      --code-red: #cf222e;
+      --code-green: #116329;
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --bg: #090d17;
+      --surface: rgba(20, 27, 43, .88);
+      --surface-solid: #141b2b;
+      --surface-soft: #382317;
+      --text: #edf2ff;
+      --muted: #a4aec4;
+      --line: #2b3550;
+      --primary: #ff843f;
+      --primary-strong: #ffab7a;
+      --cyan: #fdba8c;
+      --pink: #ffb27d;
+      --success: #34d399;
+      --shadow: none;
+      --code-bg: #0d1117;
+      --code-line: #30363d;
+      --code-text: #e6edf3;
+      --code-comment: #8b949e;
+      --code-blue: #79c0ff;
+      --code-purple: #d2a8ff;
+      --code-red: #ff7b72;
+      --code-green: #7ee787;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.72;
+      transition: background-color .25s ease, color .25s ease;
+    }
+
+    a { color: var(--primary-strong); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font: inherit; }
+    img { max-width: 100%; }
+
+    .progress {
+      position: fixed; inset: 0 auto auto 0; z-index: 100;
+      width: 0; height: 4px;
+      background: var(--primary);
+    }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 90;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 clamp(18px, 4vw, 56px);
+      background: var(--surface-solid);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--text); font-weight: 800; }
+    .brand:hover { text-decoration: none; }
+    .brand-logo {
+      display: block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .top-actions { display: flex; gap: 9px; }
+    .icon-button {
+      display: grid; place-items: center; width: 40px; height: 40px;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: var(--surface); color: var(--text); cursor: pointer;
+    }
+    .icon-button:hover { border-color: var(--primary); transform: translateY(-1px); }
+    .menu-button { display: none; }
+
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      width: min(1200px, calc(100% - 32px)); margin: 40px auto 24px;
+      padding: clamp(36px, 5vw, 56px);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface-solid);
+      color: var(--text);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; filter: blur(2px); }
+    .hero::before, .hero::after { display: none; }
+    .eyebrow { display: inline-flex; padding: 5px 10px; border-radius: 6px; background: var(--surface-soft); color: var(--primary-strong); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    .eyebrow::before { display: none; }
+    .hero h1 { max-width: 780px; margin: 20px 0 14px; font-size: clamp(36px, 6vw, 58px); line-height: 1.08; letter-spacing: -.04em; }
+    .hero h1 span { color: var(--primary-strong); }
+    .hero p { max-width: 680px; margin: 0; color: var(--muted); font-size: clamp(16px, 2vw, 18px); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-meta span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--muted); font-size: 12px; font-weight: 650; }
+    .css-orbit { display: none; }
+
+    .roadmap { width: min(1200px, calc(100% - 32px)); margin: 0 auto 30px; }
+    .roadmap-head { display: flex; align-items: end; justify-content: space-between; margin: 30px 2px 14px; }
+    .roadmap-head h2 { margin: 0; font-size: 21px; }
+    .roadmap-head span { color: var(--muted); font-size: 13px; }
+    .roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .roadmap-card { display: flex; align-items: center; gap: 11px; min-height: 64px; padding: 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); }
+    a.roadmap-card:hover { border-color: var(--primary); text-decoration: none; }
+    .roadmap-card span { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 6px; background: var(--surface-soft); color: var(--primary); font-size: 12px; font-weight: 900; }
+    .roadmap-card strong { font-size: 13px; line-height: 1.3; }
+    .roadmap-card.is-active { border-color: var(--primary); background: var(--surface-soft); color: var(--text); }
+    .roadmap-card.is-active span { background: var(--primary); color: white; }
+
+    .layout { display: grid; grid-template-columns: 250px minmax(0, 850px); gap: 32px; justify-content: center; width: min(1200px, calc(100% - 32px)); margin: 0 auto 80px; align-items: start; }
+    .sidebar { position: sticky; top: 84px; padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-solid); }
+    .sidebar-title { margin: 0 0 11px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .sidebar nav { display: grid; gap: 4px; }
+    .sidebar nav a { display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: center; padding: 9px 10px; border-radius: 10px; color: var(--muted); font-size: 13px; font-weight: 650; line-height: 1.3; }
+    .sidebar nav a:hover, .sidebar nav a.active { background: var(--surface-soft); color: var(--primary-strong); text-decoration: none; }
+    .sidebar nav a span { font-size: 10px; font-weight: 900; }
+
+    .content { min-width: 0; }
+    .lesson-section { margin-bottom: 20px; padding: clamp(24px, 4vw, 36px); border: 1px solid var(--line); border-radius: 10px; background: var(--surface-solid); }
+    .section-label { display: inline-flex; color: var(--primary-strong); font-size: 11px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .lesson-section h2 { margin: 12px 0 25px; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; letter-spacing: -.035em; }
+    .lesson-section h3 { margin: 38px 0 13px; padding-left: 14px; border-left: 4px solid var(--primary); font-size: 23px; line-height: 1.3; }
+    .lesson-section h4 { margin: 31px 0 12px; color: var(--primary-strong); font-size: 19px; }
+    .lesson-section h5 { margin: 26px 0 10px; font-size: 17px; }
+    .lesson-section p { margin: 0 0 16px; }
+    .lesson-section strong { color: var(--text); }
+    .lesson-section code:not(pre code) { padding: .16em .42em; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-soft); color: var(--pink); font: .88em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .soft-rule { height: 1px; margin: 30px 0; border: 0; background: var(--line); }
+
+    .lesson-list { display: grid; gap: 9px; margin: 0 0 18px; padding: 0; list-style: none; }
+    .lesson-list li { position: relative; padding-left: 25px; }
+    .lesson-list li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 8px; height: 8px; border: 2px solid var(--primary); border-radius: 3px; transform: rotate(45deg); }
+    .lesson-list li.depth-1 { margin-left: 22px; color: var(--muted); }
+    .lesson-list li.depth-2, .lesson-list li.depth-3 { margin-left: 44px; color: var(--muted); }
+
+    .lesson-figure { margin: 24px 0 30px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-solid); text-align: center; }
+    .lesson-figure img { display: block; width: auto; max-height: 580px; margin: auto; border-radius: 4px; }
+
+    .code-shell { overflow: hidden; margin: 20px 0 25px; border: 1px solid var(--code-line); border-radius: 13px; background: var(--code-bg); }
+    .code-toolbar { display: flex; align-items: center; justify-content: space-between; height: 42px; padding: 0 9px 0 14px; border-bottom: 1px solid var(--code-line); color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+    .copy-button { padding: 5px 9px; border: 1px solid var(--code-line); border-radius: 7px; background: transparent; color: var(--code-text); cursor: pointer; font-size: 11px; letter-spacing: 0; }
+    .copy-button:hover { background: color-mix(in srgb, var(--code-text) 7%, transparent); }
+    .code-shell pre { margin: 0; padding: 18px; overflow: auto; background: var(--code-bg); color: var(--code-text); font: 13.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size: 2; }
+    .code-shell code { font: inherit; }
+    .tok-c, .tok-c1, .tok-cm { color: var(--code-comment); font-style: normal; }
+    .tok-nt, .tok-nn, .tok-nc { color: var(--code-green); }
+    .tok-na, .tok-k, .tok-kc, .tok-kd, .tok-kn { color: var(--code-purple); }
+    .tok-s, .tok-s1, .tok-s2, .tok-sa { color: var(--code-blue); }
+    .tok-m, .tok-mi, .tok-mf, .tok-mh { color: var(--code-blue); }
+    .tok-o, .tok-p { color: var(--code-red); }
+    .tok-nb, .tok-nf { color: var(--code-purple); }
+
+    .reveal, .reveal.visible { opacity: 1; transform: none; }
+
+    .footer { padding: 20px 20px 55px; color: var(--muted); text-align: center; font-size: 13px; }
+
+    /* Bố cục tài liệu đơn giản */
+    .progress { display: none; }
+
+    .topbar {
+      position: static;
+      height: 56px;
+      padding: 0 max(20px, calc((100% - 900px) / 2));
+    }
+
+    .hero {
+      width: min(900px, calc(100% - 32px));
+      margin: 38px auto 20px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .hero h1 {
+      max-width: none;
+      margin: 14px 0 12px;
+      font-size: clamp(34px, 6vw, 50px);
+    }
+
+    .hero p { max-width: 760px; }
+    .hero-meta { display: none; }
+
+    .roadmap {
+      width: min(900px, calc(100% - 32px));
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .roadmap-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .roadmap-card,
+    .roadmap-card.is-active {
+      min-height: 54px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-solid);
+      color: var(--text);
+    }
+
+    .roadmap-card.is-active {
+      border-color: var(--primary);
+    }
+
+    .roadmap-card span,
+    .roadmap-card.is-active span {
+      display: inline;
+      flex: 0 0 25px;
+      height: auto;
+      border-radius: 0;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: block;
+      width: min(900px, calc(100% - 32px));
+      margin-bottom: 60px;
+    }
+
+    .sidebar {
+      position: static;
+      margin-bottom: 12px;
+      padding: 0 0 22px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .sidebar nav a {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .lesson-section {
+      margin: 0;
+      padding: 38px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .section-label { display: none; }
+    .lesson-section h2 { margin-top: 0; font-size: clamp(27px, 4vw, 36px); }
+
+    @media (max-width: 1000px) {
+      .css-orbit { display: none; }
+      .layout { display: block; }
+      .sidebar { position: static; display: block; max-height: none; overflow: visible; }
+      .menu-button { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .hero { margin-top: 24px; padding: 0; border-radius: 0; }
+      .hero h1 { font-size: 43px; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .roadmap-card:nth-child(n+5) { display: flex; }
+      .lesson-section { padding: 30px 0; border-radius: 0; }
+      .lesson-section h2 { font-size: 29px; }
+      .lesson-list li.depth-1 { margin-left: 10px; }
+      .lesson-list li.depth-2, .lesson-list li.depth-3 { margin-left: 20px; }
+      .topbar { padding-inline: 14px; }
+      .brand-text { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="progress" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#top"><img class="brand-logo" src="./image/logoCLB.jpg" alt="Logo HIT Club"><span class="brand-text">Web Public · Buổi 03</span></a>
+    <div class="top-actions">
+      <button class="icon-button menu-button" type="button" aria-label="Mở mục lục" title="Mục lục">☰</button>
+      <button class="icon-button theme-button" type="button" aria-label="Đổi giao diện" title="Đổi giao diện">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">HIT WEB PUBLIC 2026 · WEEK 3</div>
+    <h1>Biến HTML thành trải nghiệm với <span>CSS</span>.</h1>
+    <p>Từ cú pháp đầu tiên đến Box Model, khoảng cách và cách các phần tử hiển thị — nền tảng để tạo nên một giao diện web đẹp và có chủ đích.</p>
+    <div class="hero-meta"><span>06 phần học</span><span>CSS Foundations</span><span>Light & Dark UI</span></div>
+    <div class="css-orbit" aria-hidden="true">{ }</div>
+  </section>
+
+  <section class="roadmap" aria-labelledby="roadmap-title">
+    <div class="roadmap-head"><h2 id="roadmap-title">Lộ trình lớp học</h2><span>Buổi 3 / 8</span></div>
+    <div class="roadmap-grid"><a class="roadmap-card" href="../Buoi1/README.html"><span>01</span><strong>IDE & Extensions</strong></a>
+<a class="roadmap-card" href="../Buoi2/README.html"><span>02</span><strong>HTML & Semantic</strong></a>
+<a class="roadmap-card is-active" href="#phan-1"><span>03</span><strong>CSS cơ bản</strong></a>
+<div class="roadmap-card"><span>04</span><strong>Font, Selector & Flexbox</strong></div>
+<div class="roadmap-card"><span>05</span><strong>Grid & Animation</strong></div>
+<div class="roadmap-card"><span>06</span><strong>JavaScript</strong></div>
+<div class="roadmap-card"><span>07</span><strong>DOM & Events</strong></div>
+<div class="roadmap-card"><span>08</span><strong>Ôn tập cuối khóa</strong></div></div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Trong bài này</p>
+      <nav><a href="#phan-1"><span>01</span>Giới thiệu CSS</a>
+<a href="#phan-2"><span>02</span>Chú thích trong CSS</a>
+<a href="#phan-3"><span>03</span>Các cách style trang web</a>
+<a href="#phan-4"><span>04</span>Viết CSS như thế nào?</a>
+<a href="#phan-5"><span>05</span>Các thuộc tính CSS cơ bản</a>
+<a href="#phan-6"><span>06</span>Reset CSS</a></nav>
+    </aside>
+    <main class="content"><section class="lesson-section reveal" id="phan-1">
+  <div class="section-label">Phần 01</div>
+  <h2>Giới thiệu CSS</h2>
+  <ul class="lesson-list">
+<li class="depth-0">CSS (Cascading Style Sheets) là ngôn ngữ dùng để mô tả cách hiển thị của các phần tử HTML (h1, table, p, . . .) trên trang web.</li>
+<li class="depth-0">Nó quyết định về bố cục, màu sắc, kiểu chữ, kích thước, khoảng cách giữa các phần tử, v.v. CSS giúp trang web đẹp hơn.</li>
+</ul>
+</section>
+<section class="lesson-section reveal" id="phan-2">
+  <div class="section-label">Phần 02</div>
+  <h2>Chú thích trong CSS</h2>
+  <ul class="lesson-list">
+<li class="depth-0">Chú thích giúp giải thích mã nguồn và được trình duyệt bỏ qua.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Để tạo chú thích một dòng hoặc nhiều dòng, sử dụng cú pháp <code>/* ........ */</code> hoặc nhấn <strong>Ctrl + /</strong>.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-1" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-1" class="language-css"><span class="tok-c">/* Đây là một chú thích trong CSS */</span>
+</code></pre>
+</div>
+</section>
+<section class="lesson-section reveal" id="phan-3">
+  <div class="section-label">Phần 03</div>
+  <h2>Các cách style trang web</h2>
+  <p>Có 3 cách để áp dụng style vào trang web</p>
+<h3>1. Inline CSS</h3>
+<ul class="lesson-list">
+<li class="depth-0">Được viết trực tiếp trong thuộc tính style của thẻ HTML.</li>
+<li class="depth-0">Cách này tiện lợi cho các chỉnh sửa nhỏ và nhanh, nhưng không tối ưu cho dự án lớn.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-2" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-2" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">p</span> <span class="tok-na">style</span><span class="tok-o">=</span><span class="tok-s">&quot;color: red;&quot;</span><span class="tok-p">&gt;</span>Văn bản này có màu xanh.<span class="tok-p">&lt;/</span><span class="tok-nt">p</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<figure class="lesson-figure"><img src="./image/image.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<h3>2. Internal CSS</h3>
+<ul class="lesson-list">
+<li class="depth-0">Được viết trong thẻ <code>&lt;style&gt;</code> bên trong phần <code>&lt;head&gt;</code> của trang HTML.</li>
+<li class="depth-0">Cách này tiện lợi cho các trang HTML đơn giản khi chỉ có một tệp HTML.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-3" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-3" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">style</span><span class="tok-p">&gt;</span>
+<span class="tok-w">    </span><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-k">color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">blue</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-p">&lt;/</span><span class="tok-nt">style</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<figure class="lesson-figure"><img src="./image/internalcss.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<h3>3. External CSS</h3>
+<p>Được liên kết thông qua một file CSS riêng biệt, giúp quản lý CSS dễ dàng hơn:</p>
+<p>Lúc này bạn sử dụng thẻ <code>link</code> đặt trong phần <code>head</code>, với giá trị của thuộc tính <code>href</code> là đường dẫn tới file <code>style.css</code></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-4" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-4" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">link</span> <span class="tok-na">rel</span><span class="tok-o">=</span><span class="tok-s">&quot;stylesheet&quot;</span> <span class="tok-na">href</span><span class="tok-o">=</span><span class="tok-s">&quot;style.css&quot;</span> <span class="tok-p">/&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<p>Trong file style.css:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-5" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-5" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">green</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<figure class="lesson-figure"><img src="./image/externalcss2.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<figure class="lesson-figure"><img src="./image/externalcss.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<h3>4. So sánh mức độ sử dụng của 3 cách style css</h3>
+<ul class="lesson-list">
+<li class="depth-0">Inline css: sử dụng để test các thuộc tính css, hiếm khi sử dụng</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Internal css: sử dụng nếu các em muốn style trong file html cho tiện, không khuyến khích dùng.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">External css: đây là cách style được dùng nhiều nhất.</li>
+</ul>
+</section>
+<section class="lesson-section reveal" id="phan-4">
+  <div class="section-label">Phần 04</div>
+  <h2>Viết CSS như thế nào?</h2>
+  <ul class="lesson-list">
+<li class="depth-0">Có 2 phần, chọn được phần tử html mình muốn chọn và thêm thuộc tính mình muốn.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Ta có file HTML như sau:</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-6" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-6" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+<span class="tok-p">&lt;</span><span class="tok-nt">html</span> <span class="tok-na">lang</span><span class="tok-o">=</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+    <span class="tok-p">&lt;</span><span class="tok-nt">meta</span> <span class="tok-na">charset</span><span class="tok-o">=</span><span class="tok-s">&quot;UTF-8&quot;</span> <span class="tok-p">/&gt;</span>
+    <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Trang mẫu<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
+    <span class="tok-p">&lt;</span><span class="tok-nt">link</span> <span class="tok-na">rel</span><span class="tok-o">=</span><span class="tok-s">&quot;stylesheet&quot;</span> <span class="tok-na">href</span><span class="tok-o">=</span><span class="tok-s">&quot;style.css&quot;</span> <span class="tok-p">/&gt;</span>
+  <span class="tok-p">&lt;/</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">body</span><span class="tok-p">&gt;</span>
+    <span class="tok-p">&lt;</span><span class="tok-nt">p</span><span class="tok-p">&gt;</span>Đây là một đoạn văn bản có màu xanh và kích thước 20px.<span class="tok-p">&lt;/</span><span class="tok-nt">p</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;/</span><span class="tok-nt">body</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Bước 1: Chọn 1 phần tử bạn cần style</li>
+</ul>
+<p>Nhìn đoạn html trên, tôi muốn style cho thẻ <code>p</code>. Tôi sẽ chọn thẻ <code>p</code></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-7" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-7" class="language-css"><span class="tok-nt">p</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Bước 2: Mở ngoặc nhọn <code>{ }</code> cho khối quy tắc CSS. Bên trong ngoặc nhọn, bạn sẽ định nghĩa các thuộc tính để định dạng cho phần tử được chọn.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-8" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-8" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-c">/* Các thuộc tính sẽ được viết ở đây */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Bước 3: Thêm thuộc tính và giá trị</li>
+</ul>
+<p>Bên trong ngoặc nhọn, bạn sẽ khai báo các thuộc tính (properties) và giá trị (values) tương ứng. Mỗi thuộc tính CSS xác định một phần của định dạng và cần có một giá trị đi kèm:</p>
+<ul class="lesson-list">
+<li class="depth-1"><code>color</code>: Đây là thuộc tính đặt màu cho văn bản của phần tử. Trong ví dụ này, bạn gán <code>blue</code> làm giá trị để đặt màu chữ là màu xanh.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-9" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-9" class="language-css"><span class="tok-nt">color</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">blue</span><span class="tok-o">;</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-1"><code>font-size</code>: Thuộc tính này xác định kích thước văn bản. Bạn đặt <code>20px</code>làm giá trị để làm cho kích thước chữ của phần tử <code>p</code> là 20px.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-10" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-10" class="language-css"><span class="tok-nt">font-size</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-o">;</span>
+</code></pre>
+</div>
+<p>❗Chú ý kết thúc mỗi thuộc tính bằng dấu chấm phẩy <code>;</code></p>
+<p>→ Ta có kết quả sau:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-11" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-11" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">blue</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<figure class="lesson-figure"><img src="./image/buoi2-1.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+</section>
+<section class="lesson-section reveal" id="phan-5">
+  <div class="section-label">Phần 05</div>
+  <h2>Các thuộc tính CSS cơ bản</h2>
+  <h4>1. CSS Units (Đơn vị)</h4>
+<p>CSS hỗ trợ nhiều đơn vị đo lường, bao gồm cả đơn vị tuyệt đối (cố định) và tương đối (dựa vào phần tử hoặc màn hình).</p>
+<ul class="lesson-list">
+<li class="depth-0"><strong>px (pixel)</strong>: Đơn vị cố định, biểu thị số pixel trên màn hình. Thường được dùng khi bạn muốn kích thước chính xác, không thay đổi theo kích thước màn hình hay phần tử cha</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-12" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-12" class="language-css"><span class="tok-nt">h1</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">24</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>% (phần trăm)</strong>: Đơn vị tương đối, thường được dùng để xác định kích thước tương đối so với phần tử cha.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-13" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-13" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">50</span><span class="tok-kt">%</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Chiếm 50% chiều rộng của phần tử cha */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>em</strong>:</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1">Đơn vị tương đối, thường được dùng để xác định kích thước tương đối so với phần tử cha trực tiếp</li>
+<li class="depth-1"><code>1em = 100%</code> kích thước font của phần tử cha.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-14" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-14" class="language-css"><span class="tok-c">/* Cỡ chữ của phần tử cha là 16px */</span>
+<span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">16</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-c">/* Phần tử con dùng đơn vị em nên 1.5em = 1.5 × 16px = 24px */</span>
+<span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mf">1.5</span><span class="tok-kt">em</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Văn bản có kích thước 24px */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>rem</strong>:</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1">Đơn vị tương đối nhưng dựa vào kích thước font của phần tử gốc (html) thay vì phần tử cha trực tiếp.</li>
+<li class="depth-1"><code>1rem = 100%</code> kích thước font của phần tử gốc (html).</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-15" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-15" class="language-css"><span class="tok-c">/* Thiết lập cỡ chữ của phần tử gốc là 16px */</span>
+<span class="tok-nt">html</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">16</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-c">/* Dùng đơn vị rem nên 1.5rem = 1.5 × 16px = 24px */</span>
+<span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mf">1.5</span><span class="tok-kt">rem</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Văn bản có kích thước 24px */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h4>2. CSS Backgrounds</h4>
+<ul class="lesson-list">
+<li class="depth-0">Các thuộc tính CSS Background tác động tới nền của phần tử</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>background-color</strong>: Đặt màu nền cho phần tử.</li>
+<li class="depth-0"><strong>background-image</strong>: Sử dụng ảnh làm nền.</li>
+<li class="depth-0"><strong>background-repeat</strong>: Xác định cách lặp lại ảnh nền.</li>
+<li class="depth-0"><strong>background-size</strong>: Đặt kích thước ảnh nền.</li>
+</ul>
+<p>Các giá trị phổ biến gồm:</p>
+<ul class="lesson-list">
+<li class="depth-1"><code>cover</code> (phủ kín)</li>
+<li class="depth-1"><code>contain</code> (hiển thị toàn bộ trong phần tử).</li>
+<li class="depth-1">2 giá trị chiều rộng và chiều cao: <code>100% 50%</code> hoặc <code>300px 100px</code></li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-16" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-16" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightblue</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-image</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">url</span><span class="tok-p">(</span><span class="tok-s2">&quot;image.jpg&quot;</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">background-repeat</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">no-repeat</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Không lặp lại ảnh nền */</span>
+<span class="tok-w">  </span><span class="tok-k">background-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">cover</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Nguồn chi tiết hơn: 👉 <a href="https://www.w3schools.com/cssref/css3_pr_background.php">Ở đây!</a></li>
+</ul>
+<h4>3. CSS Color</h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>color</strong>: Quy định màu cho văn bản. Có thể sử dụng tên màu, mã màu HEX, mã RGB hoặc mã HSL.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1">Tên màu (e.g., red, blue).</li>
+<li class="depth-1">Mã màu HEX (e.g., #ff0000).</li>
+<li class="depth-1">Mã màu RGB (e.g., rgb(255,0,0)).</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-17" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-17" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mh">#3498db</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Màu xanh dương */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h4>4. CSS Border</h4>
+<ul class="lesson-list">
+<li class="depth-0">Border là viền bao quanh phần tử, bao gồm ba thành phần:</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>border-width</strong>: Độ dày của viền (px, em, rem).</li>
+<li class="depth-0"><strong>border-style</strong>: Kiểu viền (solid, dashed, dotted, double).</li>
+<li class="depth-0"><strong>border-color</strong>: Màu viền.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-18" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-18" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">border-width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border-style</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">red</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Cú pháp short hand</strong>:</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-19" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-19" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">border</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-w"> </span><span class="tok-kc">red</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Viền dày 2px, kiểu solid và màu đỏ */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>border-radius</strong>: Tạo bo góc cho viền.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-20" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-20" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">border</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-w"> </span><span class="tok-kc">red</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Viền dày 2px, kiểu solid và màu đỏ */</span>
+<span class="tok-w">  </span><span class="tok-k">border-radius</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Tạo thành hình tròn: </li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-21" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-21" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border-radius</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">50</span><span class="tok-kt">%</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Nguồn chi tiết hơn: 👉 <a href="https://www.w3schools.com/css/css_border.asp">Ở đây!</a></li>
+</ul>
+<h4>5. CSS Text</h4>
+<ul class="lesson-list">
+<li class="depth-0">Các thuộc tính về văn bản giúp kiểm soát định dạng và căn chỉnh chữ.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>text-align</strong>: Căn lề văn bản (left, right, center, justify).</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>text-transform</strong>: Biến đổi kiểu chữ (uppercase, lowercase, capitalize).</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>text-decoration</strong>: Định dạng gạch chân, gạch ngang, bỏ gạch chân (underline, line-through, none).</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-22" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-22" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">text-align</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">center</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Căn giữa văn bản */</span>
+<span class="tok-w">  </span><span class="tok-k">text-transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">uppercase</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* In hoa toàn bộ văn bản */</span>
+<span class="tok-w">  </span><span class="tok-k">text-decoration</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">line-through</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Gạch ngang */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Nguồn chi tiết hơn: 👉 <a href="https://www.w3schools.com/css/css_text.asp">Ở đây!</a></li>
+</ul>
+<h4>6. CSS Font</h4>
+<ul class="lesson-list">
+<li class="depth-0">Thuộc tính font điều chỉnh kiểu chữ của văn bản.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>font-family</strong>: Đặt font chữ cho văn bản.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>font-size</strong>: Kích thước font, có thể dùng đơn vị px, em, rem, %.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>font-weight</strong>: Độ đậm của chữ (normal, bold, hoặc giá trị số từ 100 đến 900).</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>font-style</strong>: Kiểu chữ (italic, normal)</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-23" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-23" class="language-css"><span class="tok-nt">p</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">font-family</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;Arial&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kc">sans-serif</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Dùng phông chữ Arial và phông sans-serif dự phòng */</span>
+<span class="tok-w">  </span><span class="tok-k">font-size</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">24</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">font-weight</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">bold</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Đậm chữ */</span>
+<span class="tok-w">  </span><span class="tok-k">font-style</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">italic</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Chữ nghiêng */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Nguồn chi tiết hơn: 👉 <a href="https://www.w3schools.com/css/css_font.asp">Ở đây!</a></li>
+</ul>
+<h4>7. Width, Height</h4>
+<ul class="lesson-list">
+<li class="depth-0">Được sử dụng để tùy chỉnh chiều rộng hoặc chiều cao cho phần tử</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>width</strong>: Chiều rộng của phần tử.</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0"><strong>height</strong>: Chiều cao của phần tử.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-24" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-24" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>max-width</strong>/ <strong>max-height</strong>: Set chiều rộng/ chiều cao tối đa</li>
+<li class="depth-0"><strong>min-width</strong>/ <strong>min-height</strong>: Set chiều rộng/ chiều cao tối thiểu</li>
+<li class="depth-0">Nguồn chi tiết hơn: 👉 <a href="https://www.w3schools.com/css/css_dimension.asp">Ở đây!</a></li>
+</ul>
+<h4>8. Box Model</h4>
+<ul class="lesson-list">
+<li class="depth-0">Bất kỳ phần tử HTML nào của trang web đều được trình duyệt thể hiện dưới dạng một hình hộp chữ nhật. Ngay cả khi bạn chèn hình tròn, hình oval hay bo tròn các góc thì trình duyệt vẫn xem nó là một hình chữ nhật. Hình hộp chữ nhật này gồm 4 thành phần: <code>content</code>, <code>padding</code>, <code>border</code> và <code>margin</code>. Và tất cả chúng tạo nên cấu trúc Box model.</li>
+</ul>
+<p>→ <code>Box Model</code> là một tập các quy tắc và công thức cộng trừ để giúp browser xác định được chiều rộng, cao (và một số thứ khác) của một element.</p>
+<figure class="lesson-figure"><img src="./image/box-modal.png" alt="box-modal" loading="lazy"></figure>
+<ul class="lesson-list">
+<li class="depth-1"><strong>Content</strong>: Là nội dung chính của phần tử, nơi chứa văn bản hoặc hình ảnh.</li>
+<li class="depth-1"><strong>Padding</strong>: Khoảng cách bên trong giữa content và border, tạo không gian xung quanh nội dung.</li>
+<li class="depth-1"><strong>Border</strong>: Đường viền bao quanh phần tử, nằm giữa padding và margin.</li>
+<li class="depth-1"><strong>Margin</strong>: Khoảng cách bên ngoài giữa phần tử này và các phần tử khác, là phần ngoài cùng trong Box Model.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>TEXT</span><button class="copy-button" type="button" data-copy="code-25" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-25" class="language-text">Tổng chiều rộng = content width + padding left + padding right + border left + border right + margin left + margin right
+Tổng chiều cao = content height + padding top + padding bottom + border top + border bottom + margin top + margin bottom
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Khi sử dụng thuộc tính <code>box-sizing: border-box;</code> <code>width</code> và <code>height</code> được style sẽ là <code>width</code> và <code>height</code> cuối cùng</li>
+</ul>
+<p><strong>Ví dụ minh họa</strong></p>
+<p>Giả sử bạn có một phần tử <code>&lt;div&gt;</code> và muốn nó có <code>width</code> là <code>200px</code> và <code>height</code> là <code>100px</code>, với <code>padding</code> là <code>20px</code> và <code>border</code> là <code>5px</code>.</p>
+<ul class="lesson-list">
+<li class="depth-0">Trường hợp 1: Không dùng <code>box-sizing: border-box</code>; (giá trị mặc định là <code>content-box</code>)</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-26" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-26" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">5</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-w"> </span><span class="tok-kc">black</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<p>Trong trường hợp này:</p>
+<ul class="lesson-list">
+<li class="depth-1"><code>width</code>: <code>200px</code> và <code>height</code>: <code>100px</code> chỉ áp dụng cho phần content.</li>
+<li class="depth-1">Kích thước tổng cộng của phần tử sẽ là:</li>
+<li class="depth-2">Chiều rộng: <code>200px</code> (content) + <code>20px*2</code> (padding trái và phải) + <code>5px*2</code> (border trái và phải) = <code>250px</code></li>
+<li class="depth-2">Chiều cao: <code>100px</code> (content) + <code>20px*2</code> (padding trên và dưới) + <code>5px*2</code> (border trên và dưới) = <code>150px</code></li>
+</ul>
+<p>=&gt; Phần tử sẽ chiếm kích thước tổng cộng là <code>250px x 150px</code>.</p>
+<ul class="lesson-list">
+<li class="depth-0">Trường hợp 2: Dùng <code>box-sizing: border-box</code>;</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-27" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-27" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">5</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-w"> </span><span class="tok-kc">black</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">box-sizing</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">border-box</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<p>Trong trường hợp này:</p>
+<ul class="lesson-list">
+<li class="depth-1"><code>width</code>: <code>200px</code> và <code>height</code>: <code>100px</code> sẽ bao gồm cả <code>padding</code> và <code>border</code>.</li>
+<li class="depth-1">Kích thước tổng cộng sẽ chính xác là <code>200px x 100px</code></li>
+</ul>
+<p>=&gt; Điều này xảy ra vì trình duyệt sẽ tự điều chỉnh phần content bên trong để phù hợp với tổng kích thước <code>200px x 100px</code>.</p>
+<figure class="lesson-figure"><img src="./image/buoi2-2.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<h4>9. Padding, Margin</h4>
+<h5>9.1. Padding</h5>
+<ul class="lesson-list">
+<li class="depth-0">Padding là khoảng cách bên trong giữa nội dung (content) và đường viền (border) của phần tử.</li>
+<li class="depth-0">Padding giúp tạo không gian trống xung quanh nội dung bên trong phần tử, giúp nội dung không dính sát với border.</li>
+<li class="depth-0">Các thuộc tính của Padding</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1"><code>padding-top</code>: Tạo khoảng cách ở phía trên nội dung.</li>
+<li class="depth-1"><code>padding-right</code>: Tạo khoảng cách ở bên phải nội dung.</li>
+<li class="depth-1"><code>padding-bottom</code>: Tạo khoảng cách ở phía dưới nội dung.</li>
+<li class="depth-1"><code>padding-left</code>: Tạo khoảng cách ở bên trái nội dung.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-28" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-28" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">padding-top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding-right</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding-bottom</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">30</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding-left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">40</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Cú pháp viết tắt Shorthand</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-29" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-29" class="language-css"><span class="tok-c">/* Khoảng đệm bằng nhau ở cả bốn cạnh */</span>
+<span class="tok-nt">padding</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Khoảng đệm trên và dưới: 10px; trái và phải: 15px */</span>
+<span class="tok-nt">padding</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Khoảng đệm trên: 10px; trái và phải: 15px; dưới: 20px */</span>
+<span class="tok-nt">padding</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Khoảng đệm trên: 10px; phải: 15px; dưới: 20px; trái: 25px */</span>
+<span class="tok-nt">padding</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-w"> </span><span class="tok-nt">25px</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Các giá trị được tính theo chiều kim đồng hồ */</span>
+</code></pre>
+</div>
+<h5>9.2. Margin</h5>
+<ul class="lesson-list">
+<li class="depth-0">Margin là khoảng cách bên ngoài giữa phần tử và các phần tử khác.</li>
+<li class="depth-0">Margin giúp tạo không gian trống xung quanh phần tử, cách ly phần tử này với các phần tử khác.</li>
+<li class="depth-0">Các thuộc tính của Margin</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1"><code>margin-top</code>: Tạo khoảng cách ở phía trên phần tử.</li>
+<li class="depth-1"><code>margin-right</code>: Tạo khoảng cách ở bên phải phần tử.</li>
+<li class="depth-1"><code>margin-bottom</code>: Tạo khoảng cách ở phía dưới phần tử.</li>
+<li class="depth-1"><code>margin-left</code>: Tạo khoảng cách ở bên trái phần tử.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-30" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-30" class="language-css"><span class="tok-nt">div</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">margin-top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">margin-right</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">margin-bottom</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">30</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">margin-left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">40</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0">Cú pháp viết tắt Shorthand</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-31" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-31" class="language-css"><span class="tok-c">/* Lề ngoài bằng nhau ở cả bốn cạnh */</span>
+<span class="tok-nt">margin</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Lề ngoài trên và dưới: 10px; trái và phải: 15px */</span>
+<span class="tok-nt">margin</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Lề ngoài trên: 10px; trái và phải: 15px; dưới: 20px */</span>
+<span class="tok-nt">margin</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-o">;</span>
+
+<span class="tok-c">/* Lề ngoài trên: 10px; phải: 15px; dưới: 20px; trái: 25px */</span>
+<span class="tok-nt">margin</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">10px</span><span class="tok-w"> </span><span class="tok-nt">15px</span><span class="tok-w"> </span><span class="tok-nt">20px</span><span class="tok-w"> </span><span class="tok-nt">25px</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Các giá trị được tính theo chiều kim đồng hồ */</span>
+</code></pre>
+</div>
+<h4>10. Display, Block, Inline, Inline-block</h4>
+<ul class="lesson-list">
+<li class="depth-0">Những thuộc tính này quyết định cách các phần tử HTML hiển thị trên trang web</li>
+<li class="depth-0">Các giá trị phổ biến của <code>display</code></li>
+</ul>
+<p>a. <code>block</code></p>
+<ul class="lesson-list">
+<li class="depth-0">Là các phần tử hiển thị theo dạng khối, chiếm toàn bộ chiều ngang của trang (100% chiều rộng), đẩy các phần tử khác xuống hàng mới.</li>
+<li class="depth-0">Các phần tử block tự động bắt đầu trên một dòng mới và có thể điều chỉnh chiều rộng và chiều cao</li>
+<li class="depth-0">Một số thẻ HTML mặc định hiển thị dạng block: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>, v.v.</li>
+</ul>
+<figure class="lesson-figure"><img src="./image/buoi2-3.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<p>b. <code>inline</code></p>
+<ul class="lesson-list">
+<li class="depth-0">Không bắt đầu dòng mới, không chiếm toàn bộ chiều ngang mà chỉ chiếm không gian cần thiết vừa đủ với nội dung của nó.</li>
+<li class="depth-0">Các phần tử inline không bắt đầu trên một dòng mới và sẽ nằm cùng dòng với các phần tử khác.</li>
+<li class="depth-0">Một số thẻ HTML mặc định là inline: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;label&gt;</code>,..</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Không thể thay đổi <code>width</code> và <code>height</code></li>
+<li class="depth-0">Chỉ có thể áp dụng <code>margin</code> theo chiều ngang (trái và phải) chứ không phải chiều dọc (trên và dưới).</li>
+<li class="depth-0">Về padding thì áp dụng được theo chiều ngang còn padding dọc về mặt thị giác là có xuất hiện, nhưng về mặt layout thì nó sẽ đè lên các phần tử khác, chứ không đẩy chúng ra xa</li>
+</ul>
+<figure class="lesson-figure"><img src="./image/buoi2--4.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+<p>c. <code>inline-block</code>:</p>
+<ul class="lesson-list">
+<li class="depth-0">Kết hợp đặc điểm của cả block và inline. Các phần tử inline-block hiển thị theo hàng với nội dung khác (như inline) nhưng vẫn có thể điều chỉnh kích thước (width và height) như block.</li>
+<li class="depth-0">Chiếm không gian vừa đủ cho nội dung, nhưng có thể điều chỉnh width và height.</li>
+<li class="depth-0">Có thể áp dụng padding, margin, và border cho cả chiều ngang và chiều dọc.</li>
+</ul>
+<figure class="lesson-figure"><img src="./image/buoi2-5.png" alt="Minh họa nội dung bài học" loading="lazy"></figure>
+</section>
+<section class="lesson-section reveal" id="phan-6">
+  <div class="section-label">Phần 06</div>
+  <h2>Reset CSS</h2>
+  <ul class="lesson-list">
+<li class="depth-0">Reset CSS đặt lại các giá trị mặc định của trình duyệt cho các phần tử (như khoảng cách <code>margin</code>, <code>padding</code>, <code>font-size</code>,...), giúp tăng tính nhất quán khi hiển thị trên các trình duyệt khác nhau.</li>
+<li class="depth-0">Reset css thường được đặt ở đầu file</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-32" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-32" class="language-css"><span class="tok-o">*</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-c">/* Xóa lề ngoài, khoảng đệm và đường viền mặc định */</span>
+<span class="tok-w">  </span><span class="tok-k">margin</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">box-sizing</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">border-box</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+</section></main>
+  </div>
+
+  <footer class="footer">HIT Web Public 2026 · Buổi 3 — CSS cơ bản</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const body = document.body;
+      const themeButton = document.querySelector(".theme-button");
+      const menuButton = document.querySelector(".menu-button");
+      const sidebar = document.querySelector(".sidebar");
+      const progress = document.querySelector(".progress");
+      const savedTheme = localStorage.getItem("buoi3-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      function applyTheme(isDark) {
+        body.classList.toggle("dark", isDark);
+        themeButton.textContent = isDark ? "☀️" : "🌙";
+      }
+
+      applyTheme(savedTheme ? savedTheme === "dark" : prefersDark);
+      themeButton.addEventListener("click", function () {
+        const isDark = !body.classList.contains("dark");
+        applyTheme(isDark);
+        localStorage.setItem("buoi3-theme", isDark ? "dark" : "light");
+      });
+
+      menuButton.addEventListener("click", function () {
+        sidebar.classList.toggle("open");
+      });
+      sidebar.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () { sidebar.classList.remove("open"); });
+      });
+
+      document.querySelectorAll('a[href^="http"]').forEach(function (link) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+
+      async function copyCode(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+      }
+
+      document.querySelectorAll(".copy-button").forEach(function (button) {
+        button.addEventListener("click", async function () {
+          const code = document.getElementById(button.dataset.copy);
+          try {
+            await copyCode(code.textContent);
+            button.textContent = "Copied!";
+            window.setTimeout(function () { button.textContent = "Copy"; }, 1500);
+          } catch (error) {
+            button.textContent = "Failed";
+          }
+        });
+      });
+
+      const navLinks = [...document.querySelectorAll('.sidebar a[href^="#"]')];
+      const sections = [...document.querySelectorAll(".lesson-section")];
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (link) {
+              link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: "-18% 0px -68% 0px" });
+      sections.forEach(function (section) { observer.observe(section); });
+
+      const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .04 });
+      document.querySelectorAll(".reveal").forEach(function (item) { revealObserver.observe(item); });
+
+      function updateProgress() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (scrollable > 0 ? window.scrollY / scrollable * 100 : 0) + "%";
+      }
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
