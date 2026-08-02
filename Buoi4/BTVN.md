@@ -1,7 +1,7 @@
 # Bài tập: Flexbox và Hover
 
 ## Yêu cầu
-
+Làm 2 trò chơi chụp kết quả lại và 
 Thiết kế giao diện **Khóa học Front-end** gồm **3 Card**:
 
 * HTML5
