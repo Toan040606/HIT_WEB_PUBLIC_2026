@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tài liệu Buổi 5 lớp HIT Web Public 2026: CSS Grid, Position, Animation, Transition.">
-  <title>HIT Web Public 2026 — Buổi 5: CSS Grid & Animation</title>
+  <meta name="description" content="Tài liệu Buổi 5 lớp HIT Web Public 2026: CSS Grid, Position, Animation và Transition.">
+  <title>HIT Web Public 2026 — Buổi 5: CSS Grid, Position & Animation</title>
   <style>
     :root {
       color-scheme: light;
@@ -323,6 +323,20 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
     }
+
+    .source-outline { margin-bottom: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .source-outline h2 { margin: 0 0 12px; font-size: 24px; }
+    .lesson-preface { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .outline-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .outline-links a { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
+    .table-wrap { overflow-x: auto; margin: 20px 0 26px; }
+    .table-wrap table { width: 100%; border-collapse: collapse; background: var(--surface-solid); }
+    .table-wrap th, .table-wrap td { padding: 10px 13px; border: 1px solid var(--line); text-align: left; }
+    .table-wrap th { background: var(--surface-soft); color: var(--text); font-size: 13px; }
+    .table-wrap td { font-size: 14px; }
+    .lesson-list.ordered { padding-left: 28px; list-style: decimal; }
+    .lesson-list.ordered li { padding-left: 5px; }
+    .lesson-list.ordered li::before { display: none; }
   </style>
 </head>
 <body id="top">
@@ -337,419 +351,746 @@
 
   <section class="hero">
     <div class="eyebrow">HIT WEB PUBLIC 2026 · WEEK 5</div>
-    <h1>CSS Grid, Position, Animation và <span>Transition</span>.</h1>
-    <p>Tìm hiểu hệ thống bố cục Grid, cách định vị bằng Position và tạo hiệu ứng bằng Animation & Transition.</p>
-    <div class="hero-meta"><span>05 phần học</span><span>CSS nâng cao</span><span>Light & Dark UI</span></div>
+    <h1>HIT-WEB-PUBLIC-2026 - WEEK 5</h1>
+    <p>CSS Grid, Position, Animation, Transition.</p>
+    <div class="hero-meta"><span>05 phần học</span><span>CSS Layout</span><span>Light &amp; Dark UI</span></div>
     <div class="css-orbit" aria-hidden="true">{ }</div>
   </section>
 
   <section class="roadmap" aria-labelledby="roadmap-title">
-    <div class="roadmap-head"><h2 id="roadmap-title">Lộ trình lớp học</h2><span>Buổi 5 / 8</span></div>
+    <div class="roadmap-head"><h2 id="roadmap-title">Lộ trình lớp Web Public hè 2026</h2><span>Buổi 5 / 8</span></div>
     <div class="roadmap-grid">
-      <a class="roadmap-card" href="../Buoi1/README.html"><span>01</span><strong>IDE & Extensions</strong></a>
-      <a class="roadmap-card" href="../Buoi2/README.html"><span>02</span><strong>HTML & Semantic</strong></a>
-      <a class="roadmap-card" href="../Buoi3/README.html"><span>03</span><strong>CSS cơ bản</strong></a>
-      <a class="roadmap-card" href="../Buoi4/README.html"><span>04</span><strong>Font, Selector & Flexbox</strong></a>
-      <a class="roadmap-card is-active" href="#i-tong-quan-css-grid"><span>05</span><strong>Grid, Position, Animation</strong></a>
-      <div class="roadmap-card"><span>06</span><strong>JavaScript</strong></div>
-      <div class="roadmap-card"><span>07</span><strong>DOM & Events</strong></div>
-      <div class="roadmap-card"><span>08</span><strong>Ôn tập cuối khóa</strong></div>
+<a class="roadmap-card" href="../Buoi1/README.html"><span>01</span><strong>Buổi 1: Giới thiệu cài đặt IDE và Extensions</strong></a>
+<a class="roadmap-card" href="../Buoi2/README.html"><span>02</span><strong>Buổi 2: Cấu trúc HTML cơ bản &amp; Semantic HTML</strong></a>
+<a class="roadmap-card" href="../Buoi3/README.html"><span>03</span><strong>Buổi 3: Giới thiệu CSS &amp; Cách style cơ bản</strong></a>
+<a class="roadmap-card" href="../Buoi4/README.html"><span>04</span><strong>Buổi 4: Làm việc với Font, Biến, Bộ chọn &amp; Kỹ thuật chia layout với Flexbox</strong></a>
+<a class="roadmap-card is-active" href="#i-tổng-quan-về-css-grid"><span>05</span><strong>Buổi 5: CSS Grid, Position, Animation, Transition</strong></a>
+<div class="roadmap-card"><span>06</span><strong>Buổi 6: Giới thiệu về JavaScript và cách sử dụng JavaScript</strong></div>
+<div class="roadmap-card"><span>07</span><strong>Buổi 7: DOM là gì? Lắng nghe sự kiện và thao tác DOM</strong></div>
+<div class="roadmap-card"><span>08</span><strong>Buổi 8: Ôn tập tổng hợp &amp; Kiểm tra cuối khóa</strong></div>
     </div>
   </section>
 
   <div class="layout">
     <aside class="sidebar">
       <p class="sidebar-title">Trong bài này</p>
-      <nav>
-        <a href="#i-tong-quan-css-grid"><span>01</span>Tổng quan CSS Grid</a>
-        <a href="#ii-cach-su-dung-css-grid"><span>02</span>Cách sử dụng CSS Grid</a>
-        <a href="#iii-css-position"><span>03</span>CSS Position</a>
-        <a href="#vi-css-animation"><span>04</span>CSS Animation</a>
-        <a href="#vii-css-transition"><span>05</span>CSS Transition</a>
-      </nav>
+      <nav><a href="#i-tổng-quan-về-css-grid"><span>01</span>Tổng quan về CSS Grid</a>
+<a href="#ii-cách-sử-dụng-css-grid"><span>02</span>Cách sử dụng CSS Grid</a>
+<a href="#iii-css-position"><span>03</span>CSS Position</a>
+<a href="#vi-css-animation"><span>04</span>CSS Animation</a>
+<a href="#vii-css-transition"><span>05</span>CSS Transition</a></nav>
     </aside>
-    <main class="content">
-      <section class="lesson-section reveal" id="i-tong-quan-css-grid">
-        <div class="section-label">Phần 01</div>
-        <h2>Tổng quan về CSS Grid</h2>
-        <p><strong>CSS Grid</strong> là một hệ thống layout mạnh mẽ để xây dựng bố cục theo hàng và cột.</p>
-        <p>Grid giúp kiểm soát chính xác vị trí các phần tử con, tạo layout phức tạp và linh hoạt hơn so với Flexbox khi làm việc với hai chiều.</p>
-        <figure class="lesson-figure"><img src="grid-2.png" alt="CSS Grid overview" loading="lazy"></figure>
-        <p>CSS Grid bao gồm các khái niệm cơ bản sau:</p>
-        <ul class="lesson-list">
-          <li><strong>Grid Container</strong>: phần tử cha bật <code>display: grid</code>.</li>
-          <li><strong>Grid Item</strong>: phần tử con trực tiếp nằm trong Grid Container.</li>
-          <li><strong>Grid Row & Grid Column</strong>: hàng và cột được định nghĩa bằng <code>grid-template-rows</code> và <code>grid-template-columns</code>.</li>
-          <li><strong>Grid Line</strong>: đường phân chia các hàng và cột của grid.</li>
-          <li><strong>Grid Track</strong>: vùng giữa hai Grid Line.</li>
-          <li><strong>Grid Cell</strong>: một ô đơn trong lưới.</li>
-          <li><strong>Grid Area</strong>: vùng gồm nhiều Grid Cell.</li>
-          <li><strong>Grid Gap</strong>: khoảng cách giữa các hàng và cột.</li>
-        </ul>
-      </section>
+    <main class="content"><section class="source-outline"><h2>Nội dung</h2><div class="outline-links"><a href="#i-tổng-quan-về-css-grid">I. Tổng quan CSS Grid</a><a href="#ii-cách-sử-dụng-css-grid">II. Cách sử dụng CSS Grid</a><a href="#iii-css-position">III. CSS Position</a><a href="#vi-css-animation">VI. CSS Animation</a><a href="#vii-css-transition">VII. CSS Transition</a></div></section><section class="lesson-preface"><figure class="lesson-figure"><img src="grid.png" alt="alt text" loading="lazy"></figure>
+<h3>CSS Grid: Hệ thống bố cục mạnh mẽ và chi tiết</h3>
+<p>CSS Grid là một hệ thống layout được thiết kế để giúp bạn xây dựng bố cục web một cách chính xác, dễ dàng và nhanh chóng. Grid cho phép bạn định nghĩa không gian theo cả <strong>hàng (row)</strong> và <strong>cột (column)</strong>, giúp kiểm soát toàn diện layout của trang web.</p>
+<hr class="soft-rule"></section><section class="lesson-section reveal" id="i-tổng-quan-về-css-grid">
+  <div class="section-label">Phần 01</div>
+  <h2>I. Tổng quan về CSS Grid</h2>
+  <figure class="lesson-figure"><img src="grid-2.png" alt="alt text" loading="lazy"></figure>
+<p>CSS Grid bao gồm các khái niệm cơ bản sau:</p>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="1"><strong>Grid Container</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là phần tử cha được thiết lập thuộc tính <code>display: grid</code></li>
+<li class="depth-1">Chịu trách nhiệm định nghĩa bố cục, số hàng, số cột, và vị trí của các phần tử con.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="2"><strong>Grid Item</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là các phần tử con trực tiếp bên trong Grid Container.</li>
+<li class="depth-1">Chúng có thể được đặt vào bất kỳ vị trí nào trong grid và tùy chỉnh kích thước, khoảng cách một cách linh hoạt.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="3"><strong>Grid Row và Grid Column</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1"><strong>Grid Row</strong>: Hàng ngang trong grid, được tạo ra bởi <code>grid-template-rows</code>.</li>
+<li class="depth-1"><strong>Grid Column</strong>: Cột dọc trong grid, được tạo ra bởi <code>grid-template-columns</code>.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="4"><strong>Grid Line</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là các đường dọc hoặc ngang, chia Grid Container thành các phần nhỏ.</li>
+<li class="depth-1">Các Grid Line được đánh số bắt đầu từ 1 và kéo dài qua toàn bộ Grid Container.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="5"><strong>Grid Track</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là khoảng không gian giữa hai Grid Line, bao gồm các hàng hoặc cột.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="6"><strong>Grid Cell</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là một ô duy nhất, nơi một Grid Item có thể được đặt.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="7"><strong>Grid Area</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là vùng bao gồm một hoặc nhiều Grid Cell, có thể đặt tên hoặc xác định bằng các dòng.</li>
+</ul>
+<ol class="lesson-list ordered">
+<li class="depth-0" value="8"><strong>Grid Gap</strong>:</li>
+</ol>
+<ul class="lesson-list">
+<li class="depth-1">Là khoảng cách giữa các hàng và cột, được thiết lập thông qua <code>grid-gap</code>.</li>
+</ul>
+<hr class="soft-rule">
+</section>
+<section class="lesson-section reveal" id="ii-cách-sử-dụng-css-grid">
+  <div class="section-label">Phần 02</div>
+  <h2>II. Cách sử dụng CSS Grid</h2>
+  <h5>1. Khai báo một Grid Container</h5>
+<p>Để biến một phần tử thành Grid Container, sử dụng thuộc tính <code>display: grid</code>:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-1" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-1" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h5>2. Định nghĩa số hàng và cột</h5>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-template-columns</code></strong>: Định nghĩa số lượng và kích thước của các cột.</li>
+<li class="depth-0"><strong><code>grid-template-rows</code></strong>: Định nghĩa số lượng và kích thước của các hàng.</li>
+</ul>
+<p>Ví dụ:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-2" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-2" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">grid-template-columns</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Ba cột với kích thước khác nhau */</span>
+<span class="tok-w">  </span><span class="tok-k">grid-template-rows</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">150</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-mi">150</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Hai hàng, mỗi hàng cao 150px */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Sử dụng đơn vị <code>fr</code></strong>:  </li>
+</ul>
+<p>Đơn vị <code>fr</code> chia sẻ không gian còn lại trong grid container.</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-3" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-3" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">grid-template-columns</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-n">fr</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-n">fr</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-n">fr</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Tỷ lệ các cột: 1-2-1 */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Sử dụng hàm <code>repeat()</code></strong>:  </li>
+</ul>
+<p>Rút gọn cú pháp khi có các cột hoặc hàng lặp lại.</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-4" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-4" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">grid-template-columns</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nf">repeat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-n">fr</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Ba cột, mỗi cột có kích thước 1fr */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h5>3. Khoảng cách giữa các hàng và cột</h5>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-gap</code></strong>: Khoảng cách giữa các hàng và cột.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-5" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-5" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">grid-gap</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Khoảng cách 20px giữa các hàng và cột */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-row-gap</code></strong> và <strong><code>grid-column-gap</code></strong>: Định nghĩa khoảng cách riêng biệt cho hàng và cột.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-6" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-6" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">grid-row-gap</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Khoảng cách giữa các hàng */</span>
+<span class="tok-w">  </span><span class="tok-n">grid-column-gap</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">15</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Khoảng cách giữa các cột */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h5>4. Định vị trí Grid Item</h5>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-column</code></strong>: Xác định vị trí bắt đầu và kết thúc của Grid Item theo cột.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-7" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-7" class="language-css"><span class="tok-p">.</span><span class="tok-nc">item</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-column</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-w"> </span><span class="tok-o">/</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Bắt đầu từ cột 1 và kết thúc trước cột 3 */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-row</code></strong>: Xác định vị trí bắt đầu và kết thúc của Grid Item theo hàng.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-8" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-8" class="language-css"><span class="tok-p">.</span><span class="tok-nc">item</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-row</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-w"> </span><span class="tok-o">/</span><span class="tok-w"> </span><span class="tok-mi">4</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Bắt đầu từ hàng 2 và kết thúc trước hàng 4 */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>grid-area</code></strong>: Định nghĩa vùng bao phủ của Grid Item.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-9" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-9" class="language-css"><span class="tok-p">.</span><span class="tok-nc">item</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-area</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-w"> </span><span class="tok-o">/</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-w"> </span><span class="tok-o">/</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-w"> </span><span class="tok-o">/</span><span class="tok-w"> </span><span class="tok-mi">4</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Từ hàng 1, cột 1 đến trước hàng 3, cột 4 */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>span</code></strong>: Kéo dài Grid Item qua nhiều hàng hoặc cột.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-10" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-10" class="language-css"><span class="tok-p">.</span><span class="tok-nc">item</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-column</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">span</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Kéo dài qua 2 cột */</span>
+<span class="tok-w">  </span><span class="tok-k">grid-row</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">span</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Kéo dài qua 3 hàng */</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h5>5. Đặt tên và định nghĩa Grid Area</h5>
+<p>Sử dụng <code>grid-template-areas</code> để đặt tên cho các vùng trong Grid:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-11" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-11" class="language-css"><span class="tok-p">.</span><span class="tok-nc">container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">display</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">grid</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">grid-template-areas</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;header header header&quot;</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;main main sidebar&quot;</span>
+<span class="tok-w">    </span><span class="tok-s2">&quot;footer footer footer&quot;</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 
-      <section class="lesson-section reveal" id="ii-cach-su-dung-css-grid">
-        <div class="section-label">Phần 02</div>
-        <h2>Cách sử dụng CSS Grid</h2>
-        <p>Bắt đầu bằng cách bật Grid cho một phần tử và định nghĩa số hàng, số cột, khoảng cách, cùng vị trí của các phần tử con.</p>
-        <h3>1. Khai báo một Grid Container</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-1" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-1">.container {
-  display: grid;
-}
+<span class="tok-p">.</span><span class="tok-nc">header</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-area</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">header</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-p">.</span><span class="tok-nc">main</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-area</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">main</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-p">.</span><span class="tok-nc">sidebar</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-area</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">sidebar</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-p">.</span><span class="tok-nc">footer</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">grid-area</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">footer</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>2. Định nghĩa số hàng và cột</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-2" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-2">.container {
-  display: grid;
-  grid-template-columns: 100px 200px 100px;
-  grid-template-rows: 150px 150px;
-}
+</div>
+<p>!!! ::: Ngoài ra, còn có sử dụng <code>align-items</code>, <code>justify-items</code>, <code>align-content</code>, <code>justify-content</code>, <code>align-self</code>, <code>justify-self</code> để căn chỉnh vị trí của các ô trong grid.</p>
+</section>
+<section class="lesson-section reveal" id="iii-css-position">
+  <div class="section-label">Phần 03</div>
+  <h2>III. <strong>CSS Position</strong></h2>
+  <p><code>CSS Position</code> là thuộc tính dùng để định vị và kiểm soát cách các phần tử xuất hiện trên trang web. Nó cho phép các phần tử di chuyển linh hoạt hoặc cố định trong giao diện tùy theo nhu cầu thiết kế.</p>
+<p>Dưới đây là các giá trị phổ biến của thuộc tính <code>position</code>:</p>
+<h3>1. <code>static</code> (Mặc định)</h3>
+<ul class="lesson-list">
+<li class="depth-0">Đây là giá trị mặc định của tất cả các phần tử HTML.</li>
+<li class="depth-0">Phần tử được sắp xếp theo thứ tự xuất hiện trong tài liệu và không bị ảnh hưởng bởi các thuộc tính định vị như <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-12" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-12" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;static-box&quot;</span><span class="tok-p">&gt;</span>Box<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <p>Hoặc sử dụng đơn vị <code>fr</code> để chia không gian còn lại:</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-3" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-3">.container {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-13" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-13" class="language-css"><span class="tok-p">.</span><span class="tok-nc">static-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">static</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightblue</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <p>Hàm <code>repeat()</code> giúp rút gọn khi có các cột hoặc hàng lặp lại:</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-4" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-4">.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử được sắp xếp theo vị trí tự nhiên mà không có sự thay đổi.</li>
+</ul>
+<h3>2. <code>relative</code></h3>
+<ul class="lesson-list">
+<li class="depth-0">Phần tử được định vị <strong>so với vị trí ban đầu của chính nó</strong>.</li>
+<li class="depth-0">Khi sử dụng các thuộc tính <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code>, phần tử sẽ di chuyển khỏi vị trí ban đầu mà không làm ảnh hưởng đến các phần tử khác trong bố cục.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-14" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-14" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;relative-box&quot;</span><span class="tok-p">&gt;</span>Box<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <h3>3. Khoảng cách giữa hàng và cột</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-5" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-5">.container {
-  display: grid;
-  grid-gap: 20px;
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-15" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-15" class="language-css"><span class="tok-p">.</span><span class="tok-nc">relative-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">relative</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Di chuyển xuống 20px */</span>
+<span class="tok-w">  </span><span class="tok-k">left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">30</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Di chuyển sang phải 30px */</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightgreen</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-6" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-6">.container {
-  display: grid;
-  grid-row-gap: 10px;
-  grid-column-gap: 15px;
-}
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử di chuyển xuống dưới và sang phải nhưng không chiếm vị trí mới trong luồng tài liệu.</li>
+</ul>
+<h3>3. <code>absolute</code></h3>
+<ul class="lesson-list">
+<li class="depth-0">Phần tử được định vị <strong>so với phần tử cha gần nhất có <code>position</code> khác <code>static</code></strong>.</li>
+<li class="depth-0">Nếu không có phần tử cha nào có <code>position</code>, nó sẽ căn cứ vào toàn bộ trang (<code>html</code>).</li>
+<li class="depth-0">Phần tử không giữ vị trí trong luồng tài liệu và sẽ không ảnh hưởng đến các phần tử khác.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-16" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-16" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;relative-container&quot;</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;absolute-box&quot;</span><span class="tok-p">&gt;</span>Box<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <h3>4. Định vị Grid Item</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-7" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-7">.item {
-  grid-column: 1 / 3;
-}
-</code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-8" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-8">.item {
-  grid-row: 2 / 4;
-}
-</code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-9" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-9">.item {
-  grid-area: 1 / 1 / 3 / 4;
-}
-</code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-10" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-10">.item {
-  grid-column: span 2;
-  grid-row: span 3;
-}
-</code></pre>
-        </div>
-        <h3>5. Grid Area đặt tên</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-11" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-11">.container {
-  display: grid;
-  grid-template-areas:
-    "header header header"
-    "main main sidebar"
-    "footer footer footer";
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-17" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-17" class="language-css"><span class="tok-p">.</span><span class="tok-nc">relative-container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">relative</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">300</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightgray</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 
-.header { grid-area: header; }
-.main { grid-area: main; }
-.sidebar { grid-area: sidebar; }
-.footer { grid-area: footer; }
+<span class="tok-p">.</span><span class="tok-nc">absolute-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">absolute</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightpink</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <p>Ngoài ra, có thể sử dụng <code>align-items</code>, <code>justify-items</code>, <code>align-content</code>, <code>justify-content</code>, <code>align-self</code>, <code>justify-self</code> để căn chỉnh nội dung trong grid.</p>
-      </section>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử <code>.absolute-box</code> được định vị dựa trên container <code>.relative-container</code>. Nó không chiếm chỗ trong luồng tài liệu.</li>
+</ul>
+<h3>4. <code>fixed</code></h3>
+<ul class="lesson-list">
+<li class="depth-0">Phần tử được định vị <strong>so với cửa sổ trình duyệt (viewport)</strong>.</li>
+<li class="depth-0">Vị trí của phần tử sẽ không thay đổi ngay cả khi trang được cuộn.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-18" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-18" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;fixed-box&quot;</span><span class="tok-p">&gt;</span>Fixed Box<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-19" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-19" class="language-css"><span class="tok-p">.</span><span class="tok-nc">fixed-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">fixed</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">right</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">yellow</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử cố định ở góc trên bên phải trình duyệt và không di chuyển khi cuộn trang.</li>
+</ul>
+<h3>5. <code>sticky</code></h3>
+<ul class="lesson-list">
+<li class="depth-0">Phần tử hoạt động như <code>relative</code> cho đến khi cuộn đến một điểm nhất định, sau đó trở thành <code>fixed</code>.</li>
+<li class="depth-0">Phạm vi dính của phần tử chỉ nằm trong container của nó.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-20" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-20" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;sticky-container&quot;</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;sticky-box&quot;</span><span class="tok-p">&gt;</span>Sticky Box<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-21" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-21" class="language-css"><span class="tok-p">.</span><span class="tok-nc">sticky-container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">vh</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Tăng chiều cao để cuộn */</span>
+<span class="tok-p">}</span>
 
-      <section class="lesson-section reveal" id="iii-css-position">
-        <div class="section-label">Phần 03</div>
-        <h2>CSS Position</h2>
-        <p><strong>CSS Position</strong> dùng để định vị phần tử và kiểm soát cách nó xuất hiện trên trang.</p>
-        <p>Position giúp tạo các lớp layout khác nhau: giữ vị trí trong luồng, di chuyển liên quan đến phần tử cha, cố định với viewport, hoặc dính khi cuộn.</p>
-        <h3>1. static</h3>
-        <p>Giá trị mặc định. Phần tử sắp xếp theo luồng tài liệu và không phản hồi với <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code>.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-12" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-12">.static-box {
-  position: static;
-  background-color: lightblue;
-}
+<span class="tok-p">.</span><span class="tok-nc">sticky-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">sticky</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c">/* Cố định cách mép trên 20px */</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">orange</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>2. relative</h3>
-        <p>Phần tử định vị so với vị trí ban đầu của chính nó. Di chuyển mà không làm thay đổi không gian mà nó chiếm trong luồng.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-13" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-13">.relative-box {
-  position: relative;
-  top: 20px;
-  left: 30px;
-  background-color: lightgreen;
-}
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử dính ở vị trí cách mép trên 20px khi cuộn trang nhưng sẽ dừng lại khi container kết thúc.</li>
+</ul>
+<h3>5. <strong>Ví dụ: Kết hợp <code>relative</code> và <code>absolute</code></strong></h3>
+<p><strong>Trường hợp thực tế:</strong> Một phần tử con có <code>position: absolute</code> nằm trong một phần tử cha có <code>position: relative</code>. Điều này cho phép phần tử con được định vị tự do nhưng vẫn trong phạm vi của phần tử cha.</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-22" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-22" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;relative-container&quot;</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;absolute-child&quot;</span><span class="tok-p">&gt;</span>Absolute Child<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <h3>3. absolute</h3>
-        <p>Phần tử định vị so với phần tử cha gần nhất có <code>position</code> khác <code>static</code>. Nó rời khỏi luồng tài liệu.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-14" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-14">&lt;div class="relative-container"&gt;
-  &lt;div class="absolute-box"&gt;Box&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-15" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-15">.relative-container {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  background-color: lightgray;
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-23" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-23" class="language-css"><span class="tok-p">.</span><span class="tok-nc">relative-container</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">relative</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">400</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">300</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightblue</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 
-.absolute-box {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  background-color: lightpink;
-  padding: 10px;
-}
+<span class="tok-p">.</span><span class="tok-nc">absolute-child</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">absolute</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">50</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightcoral</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>4. fixed</h3>
-        <p>Phần tử định vị so với cửa sổ trình duyệt. Vị trí không thay đổi khi cuộn trang.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-16" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-16">.fixed-box {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background-color: yellow;
-  padding: 10px;
-}
+</div>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Kết quả</strong>: Phần tử <code>.absolute-child</code> chỉ được di chuyển trong phạm vi của <code>.relative-container</code>.</li>
+</ul>
+<h3>6. <strong>Tổng kết</strong></h3>
+<div class="table-wrap"><table><thead><tr><th><strong>Giá trị</strong></th><th><strong>Ý nghĩa</strong></th><th><strong>Giữ vị trí trong luồng tài liệu</strong></th><th><strong>Định vị dựa trên</strong></th></tr></thead><tbody><tr><td><code>static</code></td><td>Vị trí mặc định, không thể điều chỉnh.</td><td>Có</td><td>Luồng tự nhiên.</td></tr><tr><td><code>relative</code></td><td>Di chuyển so với vị trí ban đầu của chính nó.</td><td>Có</td><td>Chính nó.</td></tr><tr><td><code>absolute</code></td><td>Di chuyển tự do trong phạm vi phần tử cha gần nhất có <code>position</code>.</td><td>Không</td><td>Phần tử cha gần nhất có <code>position</code>.</td></tr><tr><td><code>fixed</code></td><td>Cố định trong cửa sổ trình duyệt, không thay đổi khi cuộn trang.</td><td>Không</td><td>Cửa sổ trình duyệt.</td></tr><tr><td><code>sticky</code></td><td>Dính tại một vị trí khi cuộn trang, chỉ trong phạm vi container của nó.</td><td>Có</td><td>Container hoặc viewport (khi cuộn).</td></tr></tbody></table></div>
+<hr class="soft-rule">
+</section>
+<section class="lesson-section reveal" id="vi-css-animation">
+  <div class="section-label">Phần 04</div>
+  <h2>VI. CSS Animation</h2>
+  <p>CSS Animation giúp bạn tạo ra các hiệu ứng chuyển động mượt mà giữa các trạng thái của phần tử trong trang web. Hoạt ảnh trong CSS được áp dụng qua hai phần chính: khai báo <code>@keyframes</code> và sử dụng thuộc tính <code>animation</code>.</p>
+<h3>1. Khai báo <code>@keyframes</code></h3>
+<p>Để tạo ra một hoạt ảnh, bạn cần khai báo <code>@keyframes</code>, đây là nơi định nghĩa các trạng thái khác nhau của phần tử tại các thời điểm cụ thể trong quá trình chuyển động.</p>
+<ul class="lesson-list">
+<li class="depth-0"><strong><code>from</code> và <code>to</code></strong>: Được sử dụng để định nghĩa trạng thái ban đầu và trạng thái kết thúc của hoạt ảnh.</li>
+<li class="depth-0"><strong>Phần trăm (%)</strong>: Bạn cũng có thể sử dụng giá trị phần trăm (0%, 50%, 100%) để xác định các điểm thời gian trong quá trình hoạt ảnh.</li>
+</ul>
+<p><strong>Ví dụ về <code>@keyframes</code>:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-24" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-24" class="language-css"><span class="tok-p">@</span><span class="tok-k">keyframes</span><span class="tok-w"> </span><span class="tok-nt">moveRight</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">from</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateX</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Bắt đầu tại vị trí gốc */</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-nt">to</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateX</span><span class="tok-p">(</span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Di chuyển sang phải 200px */</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>5. sticky</h3>
-        <p>Phần tử như <code>relative</code> cho đến khi cuộn đến vị trí cố định, sau đó hoạt động giống <code>fixed</code> trong phạm vi container của nó.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-17" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-17">&lt;div class="sticky-container"&gt;
-  &lt;div class="sticky-box"&gt;Sticky Box&lt;/div&gt;
-&lt;/div&gt;
+</div>
+<p><strong>Ví dụ về sử dụng phần trăm để chia nhỏ quá trình:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-25" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-25" class="language-css"><span class="tok-p">@</span><span class="tok-k">keyframes</span><span class="tok-w"> </span><span class="tok-nt">bounce</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">0</span><span class="tok-o">%,</span>
+<span class="tok-w">  </span><span class="tok-nt">100</span><span class="tok-o">%</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateY</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Ở vị trí gốc */</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-nt">50</span><span class="tok-o">%</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateY</span><span class="tok-p">(</span><span class="tok-mi">-50</span><span class="tok-kt">px</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Nâng lên 50px tại giữa quá trình */</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-18" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-18">.sticky-container {
-  height: 200vh;
-}
+</div>
+<h3>2. Các thuộc tính trong <code>animation</code></h3>
+<p>Sau khi khai báo <code>@keyframes</code>, bạn cần sử dụng thuộc tính <code>animation</code> để áp dụng hoạt ảnh lên phần tử.</p>
+<h4>a. <code>animation-name</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Đặt tên cho hoạt ảnh đã khai báo với <code>@keyframes</code>.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Tên của <code>@keyframes</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-26" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-26" class="language-css"><span class="tok-nt">animation-name</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">bounce</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Áp dụng hoạt ảnh &#39;bounce&#39; đã khai báo */</span>
+</code></pre>
+</div>
+<h4>b. <code>animation-duration</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định thời gian mà hoạt ảnh sẽ diễn ra.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Một khoảng thời gian (ví dụ: <code>2s</code>, <code>500ms</code>).</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-27" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-27" class="language-css"><span class="tok-nt">animation-duration</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">2s</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Hoạt ảnh diễn ra trong 2 giây */</span>
+</code></pre>
+</div>
+<h4>c. <code>animation-timing-function</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định cách thức thay đổi tốc độ trong suốt quá trình hoạt ảnh. Điều này giúp tạo ra các hiệu ứng chuyển động mượt mà hoặc có sự thay đổi tốc độ.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Các giá trị như <code>linear</code>, <code>ease</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-28" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-28" class="language-css"><span class="tok-nt">animation-timing-function</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">ease-in-out</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Tốc độ thay đổi mượt mà */</span>
+</code></pre>
+</div>
+<h4>d. <code>animation-delay</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định thời gian trì hoãn trước khi hoạt ảnh bắt đầu.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Một khoảng thời gian (ví dụ: <code>1s</code>, <code>500ms</code>).</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-29" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-29" class="language-css"><span class="tok-nt">animation-delay</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">1s</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Hoạt ảnh bắt đầu sau 1 giây */</span>
+</code></pre>
+</div>
+<h4>e. <code>animation-iteration-count</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định số lần hoạt ảnh sẽ lặp lại.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Một số lượng cụ thể (ví dụ: <code>3</code>) hoặc <code>infinite</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-30" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-30" class="language-css"><span class="tok-nt">animation-iteration-count</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">infinite</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Hoạt ảnh sẽ lặp lại vô hạn */</span>
+</code></pre>
+</div>
+<h5>f. <code>animation-direction</code></h5>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định hướng của hoạt ảnh.</li>
+<li class="depth-0"><strong>Giá trị</strong>: <code>normal</code> (hoạt ảnh chạy theo chiều mặc định), <code>reverse</code> (hoạt ảnh chạy ngược lại), <code>alternate</code> (hoạt ảnh chạy theo chiều thuận và ngược lại), <code>alternate-reverse</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-31" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-31" class="language-css"><span class="tok-nt">animation-direction</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">alternate</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Hoạt ảnh chạy theo chiều thuận rồi ngược lại */</span>
+</code></pre>
+</div>
+<h3>3. Cú pháp shorthand của <code>animation</code></h3>
+<p>Sau khi hiểu các thuộc tính cơ bản, bạn có thể sử dụng cú pháp shorthand để áp dụng tất cả các thuộc tính này trong một dòng mã duy nhất.</p>
+<p><strong>Cú pháp shorthand:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-32" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-32" class="language-css"><span class="tok-nt">animation</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">animation-name</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">animation-duration</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">animation-timing-function</span><span class="tok-o">]</span>
+<span class="tok-w">  </span><span class="tok-o">[</span><span class="tok-nt">animation-delay</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">animation-iteration-count</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">animation-direction</span><span class="tok-o">];</span>
+</code></pre>
+</div>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-33" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-33" class="language-css"><span class="tok-c">/* Ứng dụng toàn bộ thuộc tính animation vào phần tử */</span>
+<span class="tok-p">.</span><span class="tok-nc">animation-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">animation</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">bounce</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">ease-in-out</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">infinite</span><span class="tok-w"> </span><span class="tok-kc">alternate</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<h3>4. Ví dụ cụ thể</h3>
+<p>HTML:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-34" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-34" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;box&quot;</span><span class="tok-p">&gt;&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<p>CSS:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-35" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-35" class="language-css"><span class="tok-p">@</span><span class="tok-k">keyframes</span><span class="tok-w"> </span><span class="tok-nt">moveRight</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-nt">from</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateX</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-nt">to</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">    </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translateX</span><span class="tok-p">(</span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
 
-.sticky-box {
-  position: sticky;
-  top: 20px;
-  background-color: orange;
-  padding: 10px;
-}
+<span class="tok-p">.</span><span class="tok-nc">box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightblue</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">animation</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-n">moveRight</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">ease-in-out</span><span class="tok-w"> </span><span class="tok-kc">infinite</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>6. Ví dụ kết hợp relative + absolute</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-19" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-19">&lt;div class="relative-container"&gt;
-  &lt;div class="absolute-child"&gt;Absolute Child&lt;/div&gt;
-&lt;/div&gt;
+</div>
+<p><strong>Giải thích</strong>:</p>
+<ul class="lesson-list">
+<li class="depth-0"><code>@keyframes moveRight</code>: Khai báo hoạt ảnh di chuyển sang phải.</li>
+<li class="depth-0"><code>animation: moveRight 2s ease-in-out infinite</code>: Áp dụng hoạt ảnh với thời gian 2 giây, chuyển động mượt mà, lặp vô hạn.</li>
+</ul>
+<hr class="soft-rule">
+</section>
+<section class="lesson-section reveal" id="vii-css-transition">
+  <div class="section-label">Phần 05</div>
+  <h2>VII. CSS Transition</h2>
+  <p>CSS Transition giúp tạo ra các hiệu ứng chuyển đổi mượt mà giữa hai trạng thái của phần tử. Các thuộc tính của Transition giúp bạn tạo hiệu ứng mượt mà khi người dùng thay đổi trạng thái của phần tử (ví dụ: hover, focus, active).</p>
+<h3>1. Các thuộc tính trong <code>transition</code></h3>
+<h4>a. <code>transition-property</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định thuộc tính CSS mà bạn muốn tạo hiệu ứng chuyển đổi.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Tên thuộc tính (ví dụ: <code>background-color</code>, <code>width</code>, <code>transform</code>).</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-36" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-36" class="language-css"><span class="tok-nt">transition-property</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">background-color</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Tạo hiệu ứng chuyển đổi cho background-color */</span>
 </code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-20" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-20">.relative-container {
-  position: relative;
-  width: 400px;
-  height: 300px;
-  background-color: lightblue;
-}
+</div>
+<h4>b. <code>transition-duration</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định thời gian mà hiệu ứng chuyển đổi sẽ hoàn thành.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Một khoảng thời gian (ví dụ: <code>0.5s</code>, <code>300ms</code>).</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-37" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-37" class="language-css"><span class="tok-nt">transition-duration</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">0</span><span class="tok-p">.</span><span class="tok-nc">3s</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Chuyển đổi trong 0.3 giây */</span>
+</code></pre>
+</div>
+<h4>c. <code>transition-timing-function</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định cách thức thay đổi tốc độ trong suốt quá trình chuyển đổi.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Các giá trị như <code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-38" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-38" class="language-css"><span class="tok-nt">transition-timing-function</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">ease-in-out</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Chuyển đổi mượt mà */</span>
+</code></pre>
+</div>
+<h4>d. <code>transition-delay</code></h4>
+<ul class="lesson-list">
+<li class="depth-0"><strong>Chức năng</strong>: Xác định thời gian trì hoãn trước khi hiệu ứng chuyển đổi bắt đầu.</li>
+<li class="depth-0"><strong>Giá trị</strong>: Thời gian trì hoãn (ví dụ: <code>0.5s</code>, <code>1s</code>).</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-39" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-39" class="language-css"><span class="tok-nt">transition-delay</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nt">0</span><span class="tok-p">.</span><span class="tok-nc">2s</span><span class="tok-o">;</span><span class="tok-w"> </span><span class="tok-c">/* Chuyển đổi bắt đầu sau 0.2 giây */</span>
+</code></pre>
+</div>
+<h3>2. Cú pháp shorthand của <code>transition</code></h3>
+<p>Sau khi hiểu các thuộc tính cơ bản của <code>transition</code>, bạn có thể sử dụng cú pháp shorthand để áp dụng tất cả các thuộc tính này trong một dòng mã duy nhất.</p>
+<p><strong>Cú pháp shorthand:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-40" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-40" class="language-css"><span class="tok-nt">transition</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">transition-property</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">transition-duration</span><span class="tok-o">]</span>
+<span class="tok-w">  </span><span class="tok-o">[</span><span class="tok-nt">transition-timing-function</span><span class="tok-o">]</span><span class="tok-w"> </span><span class="tok-o">[</span><span class="tok-nt">transition-delay</span><span class="tok-o">];</span>
+</code></pre>
+</div>
+<p><strong>Ví dụ:</strong></p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-41" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-41" class="language-css"><span class="tok-c">/* Ứng dụng toàn bộ thuộc tính transition vào phần tử */</span>
+<span class="tok-p">.</span><span class="tok-nc">transition-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">transition</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">background-color</span><span class="tok-w"> </span><span class="tok-mf">0.3</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">ease-in-out</span><span class="tok-w"> </span><span class="tok-mf">0.2</span><span class="tok-kt">s</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+</code></pre>
+</div>
+<hr class="soft-rule">
+<h3>3. <strong>Ví dụ cụ thể</strong></h3>
+<p>HTML:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-42" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-42" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;transition-box&quot;</span><span class="tok-p">&gt;</span>Hover Me<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+</code></pre>
+</div>
+<p>CSS:</p>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-43" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-43" class="language-css"><span class="tok-p">.</span><span class="tok-nc">transition-box</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">width</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightblue</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">transition</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">background-color</span><span class="tok-w"> </span><span class="tok-mf">0.5</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">ease</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 
-.absolute-child {
-  position: absolute;
-  top: 50px;
-  left: 100px;
-  background-color: lightcoral;
-  padding: 10px;
-}
+<span class="tok-p">.</span><span class="tok-nc">transition-box</span><span class="tok-p">:</span><span class="tok-nd">hover</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">background-color</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">lightgreen</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <p>CSS Position cho phép tạo các layout đặc biệt, cố định và các phần tử nổi mà không phá vỡ cấu trúc chính của trang.</p>
-      </section>
-
-      <section class="lesson-section reveal" id="vi-css-animation">
-        <div class="section-label">Phần 04</div>
-        <h2>CSS Animation</h2>
-        <p>CSS Animation giúp tạo hiệu ứng chuyển động mượt mà giữa nhiều trạng thái của phần tử.</p>
-        <h3>1. Khai báo @keyframes</h3>
-        <p><code>@keyframes</code> định nghĩa trạng thái bắt đầu và kết thúc, hoặc nhiều điểm trung gian bằng phần trăm.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-21" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-21">@keyframes moveRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(200px);
-  }
-}
+</div>
+<p><strong>Giải thích</strong>:</p>
+<ul class="lesson-list">
+<li class="depth-0"><code>transition: background-color 0.5s ease</code>: Tạo hiệu ứng chuyển đổi màu nền trong 0.5 giây.</li>
+<li class="depth-0">Khi di chuột qua phần tử <code>.transition-box</code>, màu nền sẽ thay đổi từ <code>lightblue</code> sang <code>lightgreen</code> một cách mượt mà.</li>
+</ul>
+<h3>4. Một số thuộc tính CSS thường đi kèm cùng transition</h3>
+<h4>4.1 Transform (tác động đến thẻ)</h4>
+<ul class="lesson-list">
+<li class="depth-0">translate() : Di chuyển một thẻ</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-1">Hàm này di chuyển một phần tử từ vị trí hiện tại - của nó dọc theo trục X (ngang) và Y (dọc).</li>
+<li class="depth-1">translateX(giá_trị): Di chuyển theo chiều ngang.</li>
+<li class="depth-1">translateY(giá_trị): Di chuyển theo chiều dọc.</li>
+<li class="depth-1">translate(giá_trị_x, giá_trị_y): Viết tắt cho cả hai.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-44" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-44" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;parent&quot;</span><span class="tok-p">&gt;</span>
+  <span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;child&quot;</span><span class="tok-p">&gt;</span>I&#39;m centered!<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
+<span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-22" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-22">@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-50px);
-  }
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-45" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-45" class="language-css"><span class="tok-p">.</span><span class="tok-nc">parent</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">relative</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">height</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">border</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-kt">px</span><span class="tok-w"> </span><span class="tok-kc">solid</span><span class="tok-w"> </span><span class="tok-mh">#ccc</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-p">.</span><span class="tok-nc">child</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">position</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-kc">absolute</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">top</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">50</span><span class="tok-kt">%</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">left</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">50</span><span class="tok-kt">%</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-c">/* Lùi lại 50% so với chiều rộng và chiều cao của CHÍNH NÓ */</span>
+<span class="tok-w">  </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">translate</span><span class="tok-p">(</span><span class="tok-mi">-50</span><span class="tok-kt">%</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">-50</span><span class="tok-kt">%</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">background</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mh">#3498db</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">padding</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-mi">20</span><span class="tok-kt">px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-        <h3>2. Thuộc tính animation</h3>
-        <p><strong>animation-name</strong>: tên @keyframes.</p>
-        <p><strong>animation-duration</strong>: thời gian hoạt ảnh.</p>
-        <p><strong>animation-timing-function</strong>: cách thay đổi tốc độ.</p>
-        <p><strong>animation-delay</strong>: trì hoãn trước khi bắt đầu.</p>
-        <p><strong>animation-iteration-count</strong>: số lần lặp.</p>
-        <p><strong>animation-direction</strong>: hướng chạy.</p>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-23" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-23">.animation-box {
-  animation: bounce 2s ease-in-out 1s infinite alternate;
-}
+</div>
+<figure class="lesson-figure"><img src="image.png" alt="alt text" loading="lazy"></figure>
+<ul class="lesson-list">
+<li class="depth-0">scale() — Co giãn (Phóng to/Thu nhỏ) một thẻ</li>
+<li class="depth-1">Hàm này làm cho một phần tử lớn hơn hoặc nhỏ hơn.</li>
+<li class="depth-1">scaleX(giá_trị): Chỉ co giãn chiều rộng.</li>
+<li class="depth-1">scaleY(giá_trị): Chỉ co giãn chiều cao.</li>
+<li class="depth-1">scale(giá_trị): Co giãn đều cả chiều rộng và chiều cao.</li>
+<li class="depth-1">scale(giá_trị_x, giá_trị_y): Co giãn chiều rộng và cao một cách độc lập.</li>
+</ul>
+<div class="code-shell">
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-46" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-46" class="language-html"><span class="tok-p">&lt;</span><span class="tok-nt">button</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;scale-button&quot;</span><span class="tok-p">&gt;</span>Phóng to!<span class="tok-p">&lt;/</span><span class="tok-nt">button</span><span class="tok-p">&gt;</span>
 </code></pre>
-        </div>
-        <h3>3. Ví dụ cụ thể</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-24" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-24">@keyframes moveRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(200px);
-  }
-}
-
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-  animation: moveRight 2s ease-in-out infinite;
-}
+</div>
+<div class="code-shell">
+  <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-47" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-47" class="language-css"><span class="tok-p">.</span><span class="tok-nc">scale-button</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">transition</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-k">transform</span><span class="tok-w"> </span><span class="tok-mf">0.2</span><span class="tok-kt">s</span><span class="tok-w"> </span><span class="tok-kc">ease-out</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+<span class="tok-p">.</span><span class="tok-nc">scale-button</span><span class="tok-p">:</span><span class="tok-nd">hover</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">transform</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nb">scale</span><span class="tok-p">(</span><span class="tok-mf">1.1</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-c">/* Lớn hơn 10% */</span>
+<span class="tok-p">}</span>
 </code></pre>
-        </div>
-      </section>
-
-      <section class="lesson-section reveal" id="vii-css-transition">
-        <div class="section-label">Phần 05</div>
-        <h2>CSS Transition</h2>
-        <p>CSS Transition tạo hiệu ứng mượt khi thuộc tính CSS thay đổi, thường dùng cho hover, focus hoặc trạng thái active.</p>
-        <h3>1. Thuộc tính transition</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-25" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-25">transition-property: background-color;
-transition-duration: 0.3s;
-transition-timing-function: ease-in-out;
-transition-delay: 0.2s;
-</code></pre>
-        </div>
-        <h3>2. Cú pháp shorthand</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-26" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-26">transition: background-color 0.3s ease-in-out 0.2s;
-</code></pre>
-        </div>
-        <h3>3. Ví dụ cụ thể</h3>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-27" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-27">.transition-box {
-  width: 200px;
-  height: 200px;
-  background-color: lightblue;
-  transition: background-color 0.5s ease;
-}
-
-.transition-box:hover {
-  background-color: lightgreen;
-}
-</code></pre>
-        </div>
-        <h3>4. Một số thuộc tính thường dùng</h3>
-        <ul class="lesson-list">
-          <li><strong>transform</strong>: translate, scale, rotate.</li>
-          <li><strong>color</strong>, <strong>background-color</strong>, <strong>opacity</strong>.</li>
-          <li><strong>box-shadow</strong>, <strong>filter</strong>.</li>
-        </ul>
-        <div class="code-shell">
-          <div class="code-toolbar"><span>CSS</span><button class="copy-button" type="button" data-copy="code-28" aria-label="Sao chép đoạn code">Copy</button></div>
-          <pre><code id="code-28">.scale-button {
-  transition: transform 0.2s ease-out;
-}
-.scale-button:hover {
-  transform: scale(1.1);
-}
-</code></pre>
-        </div>
-        <h3>5. So sánh Transition và Animation</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Đặc điểm</th><th>CSS Transition</th><th>CSS Animation</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Kích hoạt</td><td>khi trạng thái thay đổi</td><td>tự động hoặc qua sự kiện</td></tr>
-              <tr><td>Độ phức tạp</td><td>đơn giản</td><td>phức tạp, nhiều bước</td></tr>
-              <tr><td>Lặp lại</td><td>không lặp nếu không đổi trạng thái</td><td>có thể lặp vô hạn</td></tr>
-              <tr><td>Thời gian bắt đầu</td><td>khi trạng thái thay đổi</td><td>có thể delay</td></tr>
-              <tr><td>Điều khiển tốc độ</td><td>transition-timing-function</td><td>keyframes + timing</td></tr>
-              <tr><td>Khả năng tái sử dụng</td><td>ít linh hoạt hơn</td><td>rất linh hoạt</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
+</div>
+<h4>4.2 Color, Opacity,... (bề ngoài của thẻ)</h4>
+<ul class="lesson-list">
+<li class="depth-0">Color, background-color, border-color, border-radius,..</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Opacity: giá trị từ 0 -&gt; 1</li>
+<li class="depth-1">0 là tàng hình</li>
+<li class="depth-1">1 là nguyên hình</li>
+</ul>
+<ul class="lesson-list">
+<li class="depth-0">Một số thuộc tính khác như box-shadow, filter mọi người có thể tìm hiểu nếu muốn biết thêm nha</li>
+</ul>
+<figure class="lesson-figure"><img src="image-1.png" alt="alt text" loading="lazy"></figure>
+<hr class="soft-rule">
+<h3>Tổng kết so sánh giữa CSS Transition và CSS Animation</h3>
+<div class="table-wrap"><table><thead><tr><th><strong>Đặc điểm</strong></th><th><strong>CSS Transition</strong></th><th><strong>CSS Animation</strong></th></tr></thead><tbody><tr><td><strong>Kích hoạt</strong></td><td>Khi trạng thái của phần tử thay đổi (chẳng hạn như khi hover).</td><td>Tự động chạy hoặc có thể kích hoạt bằng cách thay đổi lớp hoặc sự kiện.</td></tr><tr><td><strong>Độ phức tạp</strong></td><td>Hiệu ứng đơn giản, chuyển đổi giữa hai trạng thái.</td><td>Có thể tạo ra các hiệu ứng phức tạp, với nhiều bước chuyển động.</td></tr><tr><td><strong>Lặp lại</strong></td><td>Không lặp lại trừ khi trạng thái thay đổi liên tục.</td><td>Có thể lặp lại vô hạn, hoặc lặp lại một số lần nhất định.</td></tr><tr><td><strong>Thời gian bắt đầu</strong></td><td>Chỉ có thể bắt đầu khi có thay đổi trạng thái.</td><td>Có thể bắt đầu ngay lập tức hoặc sau một khoảng thời gian trì hoãn (delay).</td></tr><tr><td><strong>Sử dụng</strong></td><td>Thích hợp cho các hiệu ứng chuyển đổi đơn giản như hover, focus.</td><td>Thích hợp cho các hoạt ảnh phức tạp, nhiều bước thay đổi như di chuyển, thay đổi màu sắc liên tục.</td></tr><tr><td><strong>Điều khiển tốc độ</strong></td><td>Dễ dàng điều khiển với các thuộc tính như <code>transition-timing-function</code>.</td><td>Cung cấp nhiều tùy chọn kiểm soát chuyển động như <code>keyframes</code>, <code>animation-timing-function</code>.</td></tr><tr><td><strong>Sự kiện</strong></td><td>Không thể tự kích hoạt hay có nhiều trạng thái.</td><td>Có thể tạo nhiều trạng thái và chuyển động, chẳng hạn như di chuyển, thay đổi màu sắc, xoay vòng.</td></tr><tr><td><strong>Khả năng tái sử dụng</strong></td><td>Ít linh hoạt hơn khi muốn thay đổi nhiều trạng thái.</td><td>Rất linh hoạt trong việc thay đổi nhiều trạng thái và tạo hiệu ứng phức tạp.</td></tr></tbody></table></div>
+</section></main>
   </div>
 
   <footer class="footer">HIT Web Public 2026 · Buổi 5 — CSS Grid, Position, Animation & Transition</footer>
