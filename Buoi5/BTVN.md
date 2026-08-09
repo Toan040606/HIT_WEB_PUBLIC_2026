@@ -26,6 +26,6 @@ Thiết kế giao diện **Website bán hàng** gồm:
   - Bo góc
   - Đổ bóng
 - Sử dụng `:hover` + `transition` tạo hiệu ứng.
-- Có **Responsive** trên màn hình mobile.
+
 
 ---
