@@ -20,29 +20,15 @@
 
 # HIT16-WEB-PRIVATE-2026 - WEEK 7
 
----
-
 ## [Home](../index.html)
-
----
 
 ## [1. DOM là gì](#1-dom-là-gì)
 
 ## [2. Getting Element](#2-getting-element)
 
-## [3. Adding attribute](#3-adding-attribute)
+## [3. Manipulating DOM](#3-manipulating-dom)
 
-## [4. classList](#4-classlist)
-
-## [5. Adding Text to HTML element](#5-adding-text-to-html-element)
-
-## [6. Adding style](#6-adding-style)
-
-## [7. Manipulating DOM](#7-manipulating-dom)
-
-## [8. Event Listeners](#8-event-listeners)
-
----
+## [4. Event Listeners](#4-event-listeners)
 
 ### 1. DOM là gì?
 
@@ -163,133 +149,9 @@ for (let i = 0; i < allTitles.length; i++) {
 }
 ```
 
-### 3. Adding attribute
+### 3. Manipulating DOM
 
-Thông qua javascript có thể thêm được một số thuộc tính(attribute) cho một thành phần như id, class, src, style, href, alt.
-
-#### 3.1. Adding attribute using setAttribute
-
-```js
-//syntax
-.setAttribute(name, value)
-```
-
-Với hàm **`setAttribute()`**, ta có thể xét các thuộc tính cho các thành phần với 2 đối số cần truyền vào đó là `tên tham số` và `giá trị tham gia`
-
-```js
-const titles = document.querySelectorAll("h1");
-titles[3].setAttribute("class", "title");
-titles[3].setAttribute("id", "fourth-title");
-```
-
-#### 3.2. Adding attribute without setAttribute
-
-Có một cách khác để xét thuộc tính cho 1 thành phần bằng cách như sau:
-
-```js
-//another way to setting an attribute
-const titles = document.querySelectorAll("h1");
-titles[3].className = "title";
-titles[3].id = "fourth-title";
-```
-
-### 4. classList
-
-#### 4.1. Adding class using add in classList
-
-Hàm **`add()`** trong classList được sử dụng để thêm một class cho thành phần HTML thay vì ghi đè như cách thêm thuộc tính ở trên
-
-```js
-//another way to setting an attribute: append the class, doesn't over ride
-const titles = document.querySelectorAll("h1");
-titles[3].classList.add("title", "header-title");
-```
-
-Đối số truyền vào là
-
-### 4.2. Removing class using remove in classList
-
-Ta có thể xóa một class cụ thể khỏi một thành phần bằng hàm **`remove()`** của classList
-
-```js
-titles[3].classList.remove("title", "header-title");
-```
-
-### 5. Adding Text to HTML element
-
-Một thành phần HTML bao gồm thẻ mở, thẻ đóng và nội dung, ta có thể thêm nội dung của thành phần đó bằng thuộc tính **`textContent`** hoặc **`innerHTML`**
-
-#### 5.1. Adding Text content using textContent
-
-```js
-const titles = document.querySelectorAll("h1");
-titles[3].textContent = "Fourth Title";
-```
-
-#### 5.2. Adding Text Content using innerHTML
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>JavaScript for Everyone:DOM</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <h1>Asabeneh Yetayeh challenges in 2020</h1>
-      <h2>30DaysOfJavaScript Challenge</h2>
-      <ul></ul>
-    </div>
-    <script>
-      const lists = `
-            <li>30DaysOfPython Challenge Done</li>
-            <li>30DaysOfJavaScript Challenge Ongoing</li>
-            <li>30DaysOfReact Challenge Coming</li>
-            <li>30DaysOfFullStack Challenge Coming</li>
-            <li>30DaysOfDataAnalysis Challenge Coming</li>
-            <li>30DaysOfReactNative Challenge Coming</li>
-            <li>30DaysOfMachineLearning Challenge Coming</li>`;
-      const ul = document.querySelector("ul");
-      ul.innerHTML = lists;
-    </script>
-  </body>
-</html>
-```
-
-### 6. Adding Style
-
-Ta có thể tạo kiểu cho thành phần thông qua **`style`** và tên thuộc tính
-
-```js
-const titles = document.querySelectorAll("h1");
-titles.forEach((title, i) => {
-  title.style.fontSize = "24px"; // all titles will have 24px font size
-  if (i % 2 === 0) {
-    title.style.color = "green";
-  } else {
-    title.style.color = "red";
-  }
-});
-```
-
-```js
-const titles = document.querySelectorAll("h1");
-titles.forEach((title, i) => {
-  title.style.fontSize = "24px"; // all titles will have 24px font size
-  if (i % 2 === 0) {
-    title.style.backgroundColor = "green";
-  } else {
-    title.style.backgroundColor = "red";
-  }
-});
-```
-
-- Chú ý tên các thuộc tính trong js sẽ viết ở dạng camelCase khi thuộc tính css có 2 từ trở lên, còn không sẽ phải viết thường tất cả
-  Ví dụ: color - color, background-color - backgroundColor
-
-### 7. Manipulating DOM
-
-#### 7.1. Creating an Element
+#### 3.1. Creating an Element
 
 Để có thể thể tạo thêm một thành phần HTML, ta sử dụng hàm **`createElement()`** với đối số truyền vào là tên thẻ
 
@@ -318,7 +180,7 @@ document.createElement("tagname");
 </html>
 ```
 
-#### 7.2. Creating Elements
+#### 3.2. Creating Elements
 
 - Để có thể tạo nhiều thành phần HTML, ta sẽ sử dụng vòng lặp và số lần lặp là số thành phần HTML ta muốn tạo
 
@@ -344,7 +206,7 @@ document.createElement("tagname");
 </html>
 ```
 
-#### 7.3. Appending child to a parent element
+#### 3.3. Appending child to a parent element
 
 - Để có thể thêm một thành phần vào một thành phần cha như là một thành phần con, ta cần lấy ra và truy cập tới thành phần HTML cha, sau đó sử dụng hàm **`appendChild()`**
 
@@ -371,7 +233,7 @@ document.createElement("tagname");
 </html>
 ```
 
-#### 7.4. Removing a child element from a parent node
+#### 3.4. Removing a child element from a parent node
 
 Ta có thể xóa một hay nhiều thành phần bằng cách sử dụng **`removeChild()`**
 
@@ -443,9 +305,9 @@ Bên cạnh đó, ta cũng có thể sử dụng **`.innetHTML`** để thực h
 </html>
 ```
 
-### 8. Event Listeners
+### 4. Event Listeners
 
-#### 8.1. Event
+#### 4.1. Event
 
 - Bên cạnh các sự kiện như: `onclick`, `onchange`, `onmouseover`, `onmouseout`, `onkeydown`, `onkeyup`, `onload`, ta có thể thêm lắng nghe sự kiện bằng cách sử dụng hàm **`addEventListener()`** để lắng nghe các sự kiện khác nhau của các thành phần HTML
 
@@ -547,7 +409,7 @@ Ngoài ra, ta còn có các sự kiện như sau
 - **keypress** - Khi một phím được nhấn (hiện nay thường thay bằng `keydown` vì sự kiện này đã không còn được khuyến nghị sử dụng).
 - **onload** - Khi trình duyệt đã tải xong một trang.
 
-#### 8.2. Getting value from an input element
+#### 4.2. Getting value from an input element
 
 Ta sử dụng form để thu nhập thông tin nhập từ người dùng, để làm được điều đó hãy xem ví dụ sau đây
 

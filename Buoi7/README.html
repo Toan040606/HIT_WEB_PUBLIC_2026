@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tài liệu Buổi 7 lớp HIT Web Public 2026 về JavaScript và DOM.">
-  <title>HIT Web Public 2026 — Buổi 7: JavaScript & DOM</title>
+  <meta name="description" content="Tài liệu Buổi 7 lớp HIT Web Public 2026 về DOM và Event Listeners.">
+  <title>HIT Web Public 2026 — Buổi 7: DOM & Event Listeners</title>
   <style>
     :root {
       color-scheme: light;
@@ -342,9 +342,6 @@
     .home-link a { display: inline-flex; padding: 7px 13px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-solid); font-size: 13px; font-weight: 700; }
     .source-outline { margin-bottom: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
     .source-outline h2 { margin: 0 0 12px; font-size: 24px; }
-    .lesson-section blockquote { margin: 20px 0; padding: 14px 18px; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; background: var(--surface-soft); color: var(--muted); }
-    .lesson-section blockquote p { margin-bottom: 12px; }
-    .callout { margin: 20px 0; padding: 13px 16px; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; background: var(--surface-soft); color: var(--text); }
     .outline-links { display: flex; flex-wrap: wrap; gap: 8px; }
     .outline-links a { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
     .table-wrap { overflow-x: auto; margin: 20px 0 26px; }
@@ -355,12 +352,14 @@
     .lesson-list.ordered { padding-left: 28px; list-style: decimal; }
     .lesson-list.ordered li { padding-left: 5px; }
     .lesson-list.ordered li::before { display: none; }
+    .lesson-section blockquote { margin: 20px 0; padding: 14px 18px; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; background: var(--surface-soft); color: var(--muted); }
+    .lesson-section blockquote p { margin-bottom: 12px; }
   </style>
 </head>
 <body id="top">
   <div class="progress" aria-hidden="true"></div>
   <header class="topbar">
-    <a class="brand" href="#top"><img class="brand-logo" src="../Buoi3/image/logoCLB.jpg" alt="Logo HIT Club"><span class="brand-text">Web Public · Buổi 05</span></a>
+    <a class="brand" href="#top"><img class="brand-logo" src="../Buoi3/image/logoCLB.jpg" alt="Logo HIT Club"><span class="brand-text">Web Public · Buổi 07</span></a>
     <div class="top-actions">
       <button class="icon-button menu-button" type="button" aria-label="Mở mục lục" title="Mục lục">☰</button>
       <button class="icon-button theme-button" type="button" aria-label="Đổi giao diện" title="Đổi giao diện">🌙</button>
@@ -368,15 +367,15 @@
   </header>
 
   <section class="hero">
-    <div class="eyebrow">HIT WEB PUBLIC 2026 · WEEK 5</div>
+    <div class="eyebrow">HIT WEB PUBLIC 2026 · WEEK 7</div>
     <h1>HIT16-WEB-PRIVATE-2026 - WEEK 7</h1>
     <p>CSS Grid, Position, Animation, Transition.</p>
-    <div class="hero-meta"><span>Buổi 7</span><span>JavaScript</span><span>Light &amp; Dark UI</span></div>
+    <div class="hero-meta"><span>04 phần học</span><span>JavaScript &amp; DOM</span><span>Light &amp; Dark UI</span></div>
     <div class="css-orbit" aria-hidden="true">{ }</div>
   </section>
 
   <section class="roadmap" aria-labelledby="roadmap-title">
-    <div class="roadmap-head"><h2 id="roadmap-title">Lộ trình lớp Web Public hè 2026</h2><span>Buổi 5 / 8</span></div>
+    <div class="roadmap-head"><h2 id="roadmap-title">Lộ trình lớp Web Public hè 2026</h2><span>Buổi 7 / 8</span></div>
     <div class="roadmap-grid">
 <a class="roadmap-card" href="../Buoi1/README.html"><span>01</span><strong>Buổi 1: Giới thiệu cài đặt IDE và Extensions</strong></a>
 <a class="roadmap-card" href="../Buoi2/README.html"><span>02</span><strong>Buổi 2: Cấu trúc HTML cơ bản &amp; Semantic HTML</strong></a>
@@ -394,14 +393,10 @@
       <p class="sidebar-title">Trong bài này</p>
       <nav><a href="#1-dom-là-gì"><span>01</span>1. DOM là gì?</a>
 <a href="#2-getting-element"><span>02</span>2. Getting Element</a>
-<a href="#3-adding-attribute"><span>03</span>3. Adding attribute</a>
-<a href="#4-classlist"><span>04</span>4. classList</a>
-<a href="#5-adding-text-to-html-element"><span>05</span>5. Adding Text to HTML element</a>
-<a href="#6-adding-style"><span>06</span>6. Adding Style</a>
-<a href="#7-manipulating-dom"><span>07</span>7. Manipulating DOM</a>
-<a href="#8-event-listeners"><span>08</span>8. Event Listeners</a></nav>
+<a href="#3-manipulating-dom"><span>03</span>3. Manipulating DOM</a>
+<a href="#4-event-listeners"><span>04</span>4. Event Listeners</a></nav>
     </aside>
-    <main class="content"><div class="home-link"><a href="../index.html">Home</a></div><section class="source-outline"><h2>Nội dung</h2><div class="outline-links"><a href="#1-dom-là-gì">1. DOM là gì</a><a href="#2-getting-element">2. Getting Element</a><a href="#3-adding-attribute">3. Adding attribute</a><a href="#4-classlist">4. classList</a><a href="#5-adding-text-to-html-element">5. Adding Text to HTML element</a><a href="#6-adding-style">6. Adding style</a><a href="#7-manipulating-dom">7. Manipulating DOM</a><a href="#8-event-listeners">8. Event Listeners</a></div></section><section class="lesson-section reveal" id="1-dom-là-gì">
+    <main class="content"><div class="home-link"><a href="../index.html">Home</a></div><section class="source-outline"><h2>Nội dung</h2><div class="outline-links"><a href="#1-dom-là-gì">1. DOM là gì</a><a href="#2-getting-element">2. Getting Element</a><a href="#3-manipulating-dom">3. Manipulating DOM</a><a href="#4-event-listeners">4. Event Listeners</a></div></section><section class="lesson-section reveal" id="1-dom-là-gì">
   <div class="section-label">Phần 01</div>
   <h2>1. DOM là gì?</h2>
   <p>DOM hay Document Object Model là một cấu trúc dữ liệu mô tả nội dung, cấu trúc và cách thành phần của tài liệu dưới dạng cây (tree structure)</p>
@@ -527,148 +522,20 @@
 </code></pre>
 </div>
 </section>
-<section class="lesson-section reveal" id="3-adding-attribute">
+<section class="lesson-section reveal" id="3-manipulating-dom">
   <div class="section-label">Phần 03</div>
-  <h2>3. Adding attribute</h2>
-  <p>Thông qua javascript có thể thêm được một số thuộc tính(attribute) cho một thành phần như id, class, src, style, href, alt.</p>
-<h4>3.1. Adding attribute using setAttribute</h4>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-10" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-10" class="language-javascript"><span class="tok-c1">//syntax</span>
-<span class="tok-p">.</span><span class="tok-nx">setAttribute</span><span class="tok-p">(</span><span class="tok-nx">name</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nx">value</span><span class="tok-p">)</span>
-</code></pre>
-</div>
-<p>Với hàm <strong><code>setAttribute()</code></strong>, ta có thể xét các thuộc tính cho các thành phần với 2 đối số cần truyền vào đó là <code>tên tham số</code> và <code>giá trị tham gia</code></p>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-11" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-11" class="language-javascript"><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">setAttribute</span><span class="tok-p">(</span><span class="tok-s2">&quot;class&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;title&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">setAttribute</span><span class="tok-p">(</span><span class="tok-s2">&quot;id&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;fourth-title&quot;</span><span class="tok-p">);</span>
-</code></pre>
-</div>
-<h4>3.2. Adding attribute without setAttribute</h4>
-<p>Có một cách khác để xét thuộc tính cho 1 thành phần bằng cách như sau:</p>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-12" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-12" class="language-javascript"><span class="tok-c1">//another way to setting an attribute</span>
-<span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">className</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;title&quot;</span><span class="tok-p">;</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">id</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;fourth-title&quot;</span><span class="tok-p">;</span>
-</code></pre>
-</div>
-</section>
-<section class="lesson-section reveal" id="4-classlist">
-  <div class="section-label">Phần 04</div>
-  <h2>4. classList</h2>
-  <h4>4.1. Adding class using add in classList</h4>
-<p>Hàm <strong><code>add()</code></strong> trong classList được sử dụng để thêm một class cho thành phần HTML thay vì ghi đè như cách thêm thuộc tính ở trên</p>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-13" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-13" class="language-javascript"><span class="tok-c1">//another way to setting an attribute: append the class, doesn&#39;t over ride</span>
-<span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">classList</span><span class="tok-p">.</span><span class="tok-nx">add</span><span class="tok-p">(</span><span class="tok-s2">&quot;title&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;header-title&quot;</span><span class="tok-p">);</span>
-</code></pre>
-</div>
-<p>Đối số truyền vào là</p>
-<h3>4.2. Removing class using remove in classList</h3>
-<p>Ta có thể xóa một class cụ thể khỏi một thành phần bằng hàm <strong><code>remove()</code></strong> của classList</p>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-14" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-14" class="language-javascript"><span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">classList</span><span class="tok-p">.</span><span class="tok-nx">remove</span><span class="tok-p">(</span><span class="tok-s2">&quot;title&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-s2">&quot;header-title&quot;</span><span class="tok-p">);</span>
-</code></pre>
-</div>
-</section>
-<section class="lesson-section reveal" id="5-adding-text-to-html-element">
-  <div class="section-label">Phần 05</div>
-  <h2>5. Adding Text to HTML element</h2>
-  <p>Một thành phần HTML bao gồm thẻ mở, thẻ đóng và nội dung, ta có thể thêm nội dung của thành phần đó bằng thuộc tính <strong><code>textContent</code></strong> hoặc <strong><code>innerHTML</code></strong></p>
-<h4>5.1. Adding Text content using textContent</h4>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-15" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-15" class="language-javascript"><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">[</span><span class="tok-mf">3</span><span class="tok-p">].</span><span class="tok-nx">textContent</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;Fourth Title&quot;</span><span class="tok-p">;</span>
-</code></pre>
-</div>
-<h4>5.2. Adding Text Content using innerHTML</h4>
-<div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-16" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-16" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
-<span class="tok-p">&lt;</span><span class="tok-nt">html</span> <span class="tok-na">lang</span><span class="tok-o">=</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">&gt;</span>
-  <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
-    <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>JavaScript for Everyone:DOM<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
-  <span class="tok-p">&lt;/</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
-  <span class="tok-p">&lt;</span><span class="tok-nt">body</span><span class="tok-p">&gt;</span>
-    <span class="tok-p">&lt;</span><span class="tok-nt">div</span> <span class="tok-na">class</span><span class="tok-o">=</span><span class="tok-s">&quot;wrapper&quot;</span><span class="tok-p">&gt;</span>
-      <span class="tok-p">&lt;</span><span class="tok-nt">h1</span><span class="tok-p">&gt;</span>Asabeneh Yetayeh challenges in 2020<span class="tok-p">&lt;/</span><span class="tok-nt">h1</span><span class="tok-p">&gt;</span>
-      <span class="tok-p">&lt;</span><span class="tok-nt">h2</span><span class="tok-p">&gt;</span>30DaysOfJavaScript Challenge<span class="tok-p">&lt;/</span><span class="tok-nt">h2</span><span class="tok-p">&gt;</span>
-      <span class="tok-p">&lt;</span><span class="tok-nt">ul</span><span class="tok-p">&gt;&lt;/</span><span class="tok-nt">ul</span><span class="tok-p">&gt;</span>
-    <span class="tok-p">&lt;/</span><span class="tok-nt">div</span><span class="tok-p">&gt;</span>
-    <span class="tok-p">&lt;</span><span class="tok-nt">script</span><span class="tok-p">&gt;</span>
-<span class="tok-w">      </span><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">lists</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-sb">`</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfPython Challenge Done&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfJavaScript Challenge Ongoing&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfReact Challenge Coming&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfFullStack Challenge Coming&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfDataAnalysis Challenge Coming&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfReactNative Challenge Coming&lt;/li&gt;</span>
-<span class="tok-sb">            &lt;li&gt;30DaysOfMachineLearning Challenge Coming&lt;/li&gt;`</span><span class="tok-p">;</span>
-<span class="tok-w">      </span><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">ul</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelector</span><span class="tok-p">(</span><span class="tok-s2">&quot;ul&quot;</span><span class="tok-p">);</span>
-<span class="tok-w">      </span><span class="tok-nx">ul</span><span class="tok-p">.</span><span class="tok-nx">innerHTML</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nx">lists</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-p">&lt;/</span><span class="tok-nt">script</span><span class="tok-p">&gt;</span>
-  <span class="tok-p">&lt;/</span><span class="tok-nt">body</span><span class="tok-p">&gt;</span>
-<span class="tok-p">&lt;/</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
-</code></pre>
-</div>
-</section>
-<section class="lesson-section reveal" id="6-adding-style">
-  <div class="section-label">Phần 06</div>
-  <h2>6. Adding Style</h2>
-  <p>Ta có thể tạo kiểu cho thành phần thông qua <strong><code>style</code></strong> và tên thuộc tính</p>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-17" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-17" class="language-javascript"><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">.</span><span class="tok-nx">forEach</span><span class="tok-p">((</span><span class="tok-nx">title</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nx">i</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">=&gt;</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">  </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">fontSize</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;24px&quot;</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// all titles will have 24px font size</span>
-<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-nx">i</span><span class="tok-w"> </span><span class="tok-o">%</span><span class="tok-w"> </span><span class="tok-mf">2</span><span class="tok-w"> </span><span class="tok-o">===</span><span class="tok-w"> </span><span class="tok-mf">0</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">    </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">color</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;green&quot;</span><span class="tok-p">;</span>
-<span class="tok-w">  </span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">    </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">color</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;red&quot;</span><span class="tok-p">;</span>
-<span class="tok-w">  </span><span class="tok-p">}</span>
-<span class="tok-p">});</span>
-</code></pre>
-</div>
-<div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-18" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-18" class="language-javascript"><span class="tok-kd">const</span><span class="tok-w"> </span><span class="tok-nx">titles</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">querySelectorAll</span><span class="tok-p">(</span><span class="tok-s2">&quot;h1&quot;</span><span class="tok-p">);</span>
-<span class="tok-nx">titles</span><span class="tok-p">.</span><span class="tok-nx">forEach</span><span class="tok-p">((</span><span class="tok-nx">title</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nx">i</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">=&gt;</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">  </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">fontSize</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;24px&quot;</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// all titles will have 24px font size</span>
-<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-nx">i</span><span class="tok-w"> </span><span class="tok-o">%</span><span class="tok-w"> </span><span class="tok-mf">2</span><span class="tok-w"> </span><span class="tok-o">===</span><span class="tok-w"> </span><span class="tok-mf">0</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">    </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">backgroundColor</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;green&quot;</span><span class="tok-p">;</span>
-<span class="tok-w">  </span><span class="tok-p">}</span><span class="tok-w"> </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">    </span><span class="tok-nx">title</span><span class="tok-p">.</span><span class="tok-nx">style</span><span class="tok-p">.</span><span class="tok-nx">backgroundColor</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-s2">&quot;red&quot;</span><span class="tok-p">;</span>
-<span class="tok-w">  </span><span class="tok-p">}</span>
-<span class="tok-p">});</span>
-</code></pre>
-</div>
-<ul class="lesson-list">
-<li class="depth-0">Chú ý tên các thuộc tính trong js sẽ viết ở dạng camelCase khi thuộc tính css có 2 từ trở lên, còn không sẽ phải viết thường tất cả</li>
-<p>Ví dụ: color - color, background-color - backgroundColor</p>
-</ul>
-</section>
-<section class="lesson-section reveal" id="7-manipulating-dom">
-  <div class="section-label">Phần 07</div>
-  <h2>7. Manipulating DOM</h2>
-  <h4>7.1. Creating an Element</h4>
+  <h2>3. Manipulating DOM</h2>
+  <h4>3.1. Creating an Element</h4>
 <p>Để có thể thể tạo thêm một thành phần HTML, ta sử dụng hàm <strong><code>createElement()</code></strong> với đối số truyền vào là tên thẻ</p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-19" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-19" class="language-javascript"><span class="tok-c1">// syntax</span>
+  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-10" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-10" class="language-javascript"><span class="tok-c1">// syntax</span>
 <span class="tok-nb">document</span><span class="tok-p">.</span><span class="tok-nx">createElement</span><span class="tok-p">(</span><span class="tok-s2">&quot;tagname&quot;</span><span class="tok-p">);</span>
 </code></pre>
 </div>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-20" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-20" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-11" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-11" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -687,13 +554,13 @@
 <span class="tok-p">&lt;/</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
 </code></pre>
 </div>
-<h4>7.2. Creating Elements</h4>
+<h4>3.2. Creating Elements</h4>
 <ul class="lesson-list">
 <li class="depth-0">Để có thể tạo nhiều thành phần HTML, ta sẽ sử dụng vòng lặp và số lần lặp là số thành phần HTML ta muốn tạo</li>
 </ul>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-21" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-21" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-12" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-12" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -714,13 +581,13 @@
 <span class="tok-p">&lt;/</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
 </code></pre>
 </div>
-<h4>7.3. Appending child to a parent element</h4>
+<h4>3.3. Appending child to a parent element</h4>
 <ul class="lesson-list">
 <li class="depth-0">Để có thể thêm một thành phần vào một thành phần cha như là một thành phần con, ta cần lấy ra và truy cập tới thành phần HTML cha, sau đó sử dụng hàm <strong><code>appendChild()</code></strong></li>
 </ul>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-22" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-22" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-13" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-13" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -742,11 +609,11 @@
 <span class="tok-p">&lt;/</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
 </code></pre>
 </div>
-<h4>7.4. Removing a child element from a parent node</h4>
+<h4>3.4. Removing a child element from a parent node</h4>
 <p>Ta có thể xóa một hay nhiều thành phần bằng cách sử dụng <strong><code>removeChild()</code></strong></p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-23" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-23" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-14" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-14" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
 
 <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
@@ -783,8 +650,8 @@
 </div>
 <p>Bên cạnh đó, ta cũng có thể sử dụng <strong><code>.innetHTML</code></strong> để thực hiện xóa thành phần HTML như sau:</p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-24" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-24" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-15" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-15" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
 
 <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
@@ -814,16 +681,16 @@
 </code></pre>
 </div>
 </section>
-<section class="lesson-section reveal" id="8-event-listeners">
-  <div class="section-label">Phần 08</div>
-  <h2>8. Event Listeners</h2>
-  <h4>8.1. Event</h4>
+<section class="lesson-section reveal" id="4-event-listeners">
+  <div class="section-label">Phần 04</div>
+  <h2>4. Event Listeners</h2>
+  <h4>4.1. Event</h4>
 <ul class="lesson-list">
 <li class="depth-0">Bên cạnh các sự kiện như: <code>onclick</code>, <code>onchange</code>, <code>onmouseover</code>, <code>onmouseout</code>, <code>onkeydown</code>, <code>onkeyup</code>, <code>onload</code>, ta có thể thêm lắng nghe sự kiện bằng cách sử dụng hàm <strong><code>addEventListener()</code></strong> để lắng nghe các sự kiện khác nhau của các thành phần HTML</li>
 </ul>
 <div class="code-shell">
-  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-25" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-25" class="language-javascript"><span class="tok-nx">selectedElement</span><span class="tok-p">.</span><span class="tok-nx">addEventListener</span><span class="tok-p">(</span><span class="tok-s2">&quot;eventlistner&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kd">function</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-nx">e</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+  <div class="code-toolbar"><span>JavaScript</span><button class="copy-button" type="button" data-copy="code-16" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-16" class="language-javascript"><span class="tok-nx">selectedElement</span><span class="tok-p">.</span><span class="tok-nx">addEventListener</span><span class="tok-p">(</span><span class="tok-s2">&quot;eventlistner&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kd">function</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-nx">e</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">  </span><span class="tok-c1">// the activity you want to occur after the event will be in here</span>
 <span class="tok-p">});</span>
 </code></pre>
@@ -835,8 +702,8 @@
 <li class="depth-0" value="1">Sự kiện Click chuột</li>
 </ol>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-26" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-26" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-17" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-17" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -862,8 +729,8 @@
 </div>
 <p>Ta cũng có thể lắng nghe sự kiện trực tiếp trong thành phần HTML như sau:</p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-27" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-27" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-18" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-18" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -884,8 +751,8 @@
 <li class="depth-0" value="2">Sự kiện mouse enter</li>
 </ol>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-28" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-28" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-19" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-19" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -925,14 +792,14 @@
 <li class="depth-0"><strong>keypress</strong> - Khi một phím được nhấn (hiện nay thường thay bằng <code>keydown</code> vì sự kiện này đã không còn được khuyến nghị sử dụng).</li>
 <li class="depth-0"><strong>onload</strong> - Khi trình duyệt đã tải xong một trang.</li>
 </ul>
-<h4>8.2. Getting value from an input element</h4>
+<h4>4.2. Getting value from an input element</h4>
 <p>Ta sử dụng form để thu nhập thông tin nhập từ người dùng, để làm được điều đó hãy xem ví dụ sau đây</p>
 <ol class="lesson-list ordered">
 <li class="depth-0" value="1">input value</li>
 </ol>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-29" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-29" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-20" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-20" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -966,8 +833,8 @@
 </ol>
 <p>Bên cạnh việc lấy ra giá trị của ô nhập, ta có thể lắng nghe được sự kiện nhập của hay thay đổi của ô input. Hay là sự kiện blur khi ô input không còn được focus nữa</p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-30" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-30" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-21" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-21" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -992,8 +859,8 @@
 </code></pre>
 </div>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-31" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-31" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-22" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-22" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
@@ -1023,8 +890,8 @@
 </ol>
 <p>Lắng nghe sự kiện gõ phím như thế nào?</p>
 <div class="code-shell">
-  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-32" aria-label="Sao chép đoạn code">Copy</button></div>
-  <pre><code id="code-32" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
+  <div class="code-toolbar"><span>HTML</span><button class="copy-button" type="button" data-copy="code-23" aria-label="Sao chép đoạn code">Copy</button></div>
+  <pre><code id="code-23" class="language-html"><span class="tok-cp">&lt;!DOCTYPE html&gt;</span>
 <span class="tok-p">&lt;</span><span class="tok-nt">html</span><span class="tok-p">&gt;</span>
   <span class="tok-p">&lt;</span><span class="tok-nt">head</span><span class="tok-p">&gt;</span>
     <span class="tok-p">&lt;</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>Document Object Model:30 Days Of JavaScript<span class="tok-p">&lt;/</span><span class="tok-nt">title</span><span class="tok-p">&gt;</span>
