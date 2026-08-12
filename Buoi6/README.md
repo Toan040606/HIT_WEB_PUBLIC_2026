@@ -775,12 +775,12 @@ for (let i = 0; i <= 5; i++) {
 ```javascript
 for (let i = 0; i <= 5; i++) {
   if (i == 3) {
-    break;
+    continue;
   }
   console.log(i);
 }
 
-// 0 1 2
+// 0 1 2 4 5
 ```
 
 ---
