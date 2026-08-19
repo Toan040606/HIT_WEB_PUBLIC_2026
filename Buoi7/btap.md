@@ -1,4 +1,4 @@
-# HIT15-WEB-PRIVATE-2024 - WEEK 11 - BTVN
+# Bài tập trên lớp
 
 ### Bài 1:
 
