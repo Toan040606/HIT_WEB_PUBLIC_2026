@@ -1,40 +1,26 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+  <head>
+    <title>Document Object Model</title>
+  </head>
+  <body>
+    <h1 class="title" id="first-title">First Title</h1>
+    <h1 class="title" id="second-title">Second Title</h1>
+    <h1 class="title" id="third-title">Third Title</h1>
+    <h1></h1>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dropdown menu</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
+    <script>
+      let h1 = document.getElementsByTagName("h1")
+      console.log(h1)
+      console.log(h1.length)
 
-<body>
-    <ul class="container">
-        <li class="item">Item 1</li>
+      let className = document.getElementsByClassName("title")
+      console.log(className)
+      console.log(className.length)
 
-        <li class="item dropdown1">
-            Item 2
-            <span>›</span>
-
-            <ul class="dropdown-content">
-                <li class="dropdown-item">Item 2.1</li>
-                <li class="dropdown-item">Item 2.2</li>
-                <li class="dropdown-item">
-                    Item 2.3
-                    <span>›</span>
-
-                    <ul class="dropdown-content2">
-                        <li class="dropdown-item2">Item 2.3.1</li>
-                        <li class="dropdown-item2">Item 2.3.2</li>
-                        <li class="dropdown-item2">Item 2.3.3</li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-
-        <li class="item">Item 3</li>
-        <li class="item">Item 4</li>
-    </ul>
-</body>
-
+      let idName = document.getElementById("first-title");
+      console.log(idName)
+      console.log(idName.length)
+    </script>
+  </body>
 </html>
