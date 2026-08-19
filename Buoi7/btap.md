@@ -37,11 +37,3 @@ Sau đó xử lý các trường hợp của chỉ số BMI như sau và hiển 
 ![alt text](bai1.png)
 
 **Demo:** [Tính chỉ số BMI](https://hit-15-web-private-2024-btvn.vercel.app/week-11/ex-1/index.html)
-
-### Bài 2:
-
-Nhập vào số lượng số muốn sinh. Hãy xử lý và in ra màn hình tất cả các số cùng số lượng của số chẵn, số lẻ và số nguyên tố. Yều cầu trên màn hình số chẵn có màu xanh (#79d7be), số lẻ màu vàng(#FDDB3A), số nguyên tố màu đỏ(#FD5E53)
-
-**Giao diện màn hình:**
-![alt text](bai2.png)
-**Demo:** [Sinh số tự động](https://hit-15-web-private-2024-btvn.vercel.app/week-11/ex-2/index.html)
